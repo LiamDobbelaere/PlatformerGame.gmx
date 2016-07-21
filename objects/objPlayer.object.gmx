@@ -36,6 +36,10 @@ jump_potential_multiplier = 25;
 
 move_multiplier = 5;
 max_velocity_x = 200;
+
+action_kick = false;
+
+animation_counter = 0;
 </string>
           </argument>
         </arguments>
@@ -70,12 +74,12 @@ if ( keyboard_check_direct(vk_left) &amp;&amp; phy_linear_velocity_x &gt; -max_v
     physics_apply_force(x, y, -(phy_mass * move_multiplier), 0);
 }
 
-if ( !place_free(x, y + sprite_height / 2 - 6) &amp;&amp; phy_linear_velocity_y &gt; 0 )
+/*if ( place_free(x, y + sprite_height / 2 - 6) &amp;&amp; phy_linear_velocity_y &gt; 0 )
 {
     jump_potential = 0;
-}
+}*/
 
-if ( keyboard_check_pressed(vk_up) &amp;&amp; !place_free(x, y + sprite_height / 2 - 6) )
+if ( keyboard_check_pressed(vk_up) &amp;&amp; !keyboard_check_direct(ord("F")) &amp;&amp; !place_free(x, y + sprite_height / 2 - 6) )
 {   
     audio_play_sound(sndJump, 0, false);
 
@@ -92,6 +96,45 @@ if ( keyboard_check_direct(vk_up) &amp;&amp; place_free(x, y + sprite_height / 2
     {
         physics_apply_force(x, y, 0, -phy_mass * jump_potential_multiplier );
     }
+}
+
+if ( keyboard_check_released(ord("F")) &amp;&amp; abs(phy_linear_velocity_x) &lt; 80 &amp;&amp; action_kick == false)
+{
+    audio_play_sound(sndKick, 0, false);
+
+    var nearestBox = instance_nearest(x, y, objPushboxMetal);
+    var xImpulse = 1;
+    var yImpulse = 1;
+    
+    if (keyboard_check_direct(vk_up))
+    {
+        xImpulse = 0.5;
+        yImpulse = 3;
+    }
+    
+    if ( nearestBox != noone)
+    {
+        if ( point_distance(nearestBox.x, nearestBox.y, objPlayer.x, objPlayer.y) &lt;= 24 
+             &amp;&amp; !action_kick )
+        {
+            if (x &lt;= nearestBox.x)
+            {
+                if (image_xscale == 1)
+                {
+                    with (nearestBox) physics_apply_impulse(x, y, xImpulse, -yImpulse);    
+                }
+            }
+            else
+            {
+                if (image_xscale == -1)
+                {
+                    with (nearestBox) physics_apply_impulse(x, y, -xImpulse, -yImpulse);
+                }
+            }
+        }
+    }
+    
+    action_kick = true;
 }
 </string>
           </argument>
@@ -118,7 +161,25 @@ if ( keyboard_check_direct(vk_up) &amp;&amp; place_free(x, y + sprite_height / 2
 if ( phy_linear_velocity_x &gt; 5 ) image_xscale = 1;
 else if ( phy_linear_velocity_x &lt; -5 ) image_xscale = -1;
 
-if ( place_free(x, y + sprite_height / 2 + 2) )
+if ( action_kick )
+{
+    if (sprite_index == sprPlayerKick)
+    {
+        animation_counter += 1;    
+    
+        if (animation_counter &gt; 20)
+        {
+            action_kick = false;
+        }
+    }
+    else
+    {
+        sprite_index = sprPlayerKick;
+        image_speed = 0.2;
+        animation_counter = 0;
+    }
+}
+else if ( place_free(x, y + sprite_height / 2 + 2) )
 {
     sprite_index = sprPlayerAir;
 }
