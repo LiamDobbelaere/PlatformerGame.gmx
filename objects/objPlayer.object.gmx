@@ -33,6 +33,7 @@ jump_multiplier = 300;
 jump_potential = 0;
 jump_max_potential = 10;
 jump_potential_multiplier = 25;
+can_jump = true;
 
 move_multiplier = 5;
 max_velocity_x = 200;
@@ -79,8 +80,11 @@ if ( keyboard_check_direct(vk_left) &amp;&amp; phy_linear_velocity_x &gt; -max_v
     jump_potential = 0;
 }*/
 
-if ( keyboard_check_pressed(vk_up) &amp;&amp; !keyboard_check_direct(ord("F")) &amp;&amp; !place_free(x, y + sprite_height / 2 - 6) )
+if ( keyboard_check_pressed(vk_up) &amp;&amp; !keyboard_check_direct(ord("F")) &amp;&amp; can_jump 
+     &amp;&amp; place_meeting(x, y + sprite_height / 2 + 5, objCollidable) &amp;&amp; abs(phy_linear_velocity_y) &lt; 1 * jump_multiplier/2 )
 {   
+    can_jump = false;
+
     audio_play_sound(sndJump, 0, false);
 
     physics_apply_force(x, y, 0, -phy_mass * jump_multiplier );
@@ -88,14 +92,11 @@ if ( keyboard_check_pressed(vk_up) &amp;&amp; !keyboard_check_direct(ord("F")) &
     jump_potential = jump_max_potential;
 }
 
-if ( keyboard_check_direct(vk_up) &amp;&amp; place_free(x, y + sprite_height / 2 - 6) )
+if ( keyboard_check_direct(vk_up) &amp;&amp; phy_linear_velocity_y &lt; -phy_mass * jump_multiplier/2 &amp;&amp; place_free(x, y + sprite_height / 2 + 5) &amp;&amp; jump_potential &gt; 0 )
 {
     jump_potential -= 1;
-
-    if (jump_potential &gt; 0)
-    {
-        physics_apply_force(x, y, 0, -phy_mass * jump_potential_multiplier );
-    }
+    
+    physics_apply_force(x, y, 0, -phy_mass * jump_potential_multiplier );
 }
 
 if ( keyboard_check_released(ord("F")) &amp;&amp; abs(phy_linear_velocity_x) &lt; 80 &amp;&amp; action_kick == false)
@@ -114,7 +115,7 @@ if ( keyboard_check_released(ord("F")) &amp;&amp; abs(phy_linear_velocity_x) &lt
     
     if ( nearestBox != noone)
     {
-        if ( point_distance(nearestBox.x, nearestBox.y, objPlayer.x, objPlayer.y) &lt;= 24 
+        if ( point_distance(nearestBox.x, nearestBox.y, objPlayer.x, objPlayer.y) &lt;= 28 
              &amp;&amp; !action_kick )
         {
             if (x &lt;= nearestBox.x)
@@ -179,20 +180,20 @@ if ( action_kick )
         animation_counter = 0;
     }
 }
-else if ( place_free(x, y + sprite_height / 2 + 2) )
+else if ( abs(phy_linear_velocity_y) &gt; 1 )
 {
     sprite_index = sprPlayerAir;
 }
 else if ( phy_linear_velocity_x &gt; 5 )
 {
-    if (phy_linear_velocity_x &lt; 150) sprite_index = sprPlayerWalking;
+    if (phy_linear_velocity_x &lt; max_velocity_x/1.5) sprite_index = sprPlayerWalking;
     else sprite_index = sprPlayerRunning;
 
     image_speed = abs(phy_linear_velocity_x) / 400;
 }
 else if ( phy_linear_velocity_x &lt; -5 )
 {
-    if (phy_linear_velocity_x &gt; -150) sprite_index = sprPlayerWalking;
+    if (phy_linear_velocity_x &gt; -max_velocity_x/1.5) sprite_index = sprPlayerWalking;
     else sprite_index = sprPlayerRunning;
     
     image_speed = abs(phy_linear_velocity_x) / 400;
@@ -230,6 +231,54 @@ else
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>can_jump = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+/*draw_set_color(c_lime);
+draw_point(x, y + sprite_height / 2);
+
+draw_text(x, y, phy_linear_velocity_y);*/
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>-1</PhysicsObject>
@@ -244,9 +293,9 @@ else
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>12,11</point>
-    <point>21,11</point>
-    <point>21,31</point>
-    <point>12,31</point>
+    <point>10,10</point>
+    <point>22,10</point>
+    <point>22,32</point>
+    <point>10,32</point>
   </PhysicsShapePoints>
 </object>

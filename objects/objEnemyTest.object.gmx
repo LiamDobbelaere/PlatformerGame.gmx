@@ -206,9 +206,9 @@ else
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>12,11</point>
-    <point>21,11</point>
-    <point>21,31</point>
-    <point>12,31</point>
+    <point>11,10</point>
+    <point>22,10</point>
+    <point>22,32</point>
+    <point>11,32</point>
   </PhysicsShapePoints>
 </object>

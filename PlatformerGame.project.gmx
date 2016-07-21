@@ -8,6 +8,7 @@
     <sound>sound\sndJump</sound>
     <sound>sound\sndTech</sound>
     <sound>sound\sndKick</sound>
+    <sound>sound\sndDoor</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayerStanding</sprite>
@@ -17,6 +18,7 @@
     <sprite>sprites\sprFloor</sprite>
     <sprite>sprites\sprPushboxMetal</sprite>
     <sprite>sprites\sprPlayerKick</sprite>
+    <sprite>sprites\sprBashableDoor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -28,6 +30,7 @@
     <object>objects\objCollidable</object>
     <object>objects\objFloor</object>
     <object>objects\objPushboxMetal</object>
+    <object>objects\objBashableDoor</object>
     <object>objects\objMusicTech</object>
   </objects>
   <rooms name="rooms">
