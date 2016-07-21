@@ -19,6 +19,7 @@
     <sprite>sprites\sprPushboxMetal</sprite>
     <sprite>sprites\sprPlayerKick</sprite>
     <sprite>sprites\sprBashableDoor</sprite>
+    <sprite>sprites\sprGib</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -32,6 +33,8 @@
     <object>objects\objPushboxMetal</object>
     <object>objects\objBashableDoor</object>
     <object>objects\objMusicTech</object>
+    <object>objects\objGib</object>
+    <object>objects\objGibspawner</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmTesting</room>

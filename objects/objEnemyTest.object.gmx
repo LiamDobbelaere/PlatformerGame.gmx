@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objCollidable</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -164,6 +164,7 @@ else
             <string>if (other.phy_linear_velocity_y &gt; 0 
     &amp;&amp; other.x &gt;= x - 16 &amp;&amp; other.x &lt;= x + 16 &amp;&amp; other.y &lt; y)
 {
+    instance_create(x, y, objGibspawner);
     instance_destroy();
 }
 </string>

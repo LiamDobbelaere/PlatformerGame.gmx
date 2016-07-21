@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objCollidable</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize
+randomize();
 
 phy_fixed_rotation = true; //Prevents object from rotating due to physics
 
@@ -83,13 +84,11 @@ if ( keyboard_check_direct(vk_left) &amp;&amp; phy_linear_velocity_x &gt; -max_v
 if ( keyboard_check_pressed(vk_up) &amp;&amp; !keyboard_check_direct(ord("F")) &amp;&amp; can_jump 
      &amp;&amp; place_meeting(x, y + sprite_height / 2 + 5, objCollidable) &amp;&amp; abs(phy_linear_velocity_y) &lt; 1 * jump_multiplier/2 )
 {   
-    can_jump = false;
-
     audio_play_sound(sndJump, 0, false);
-
     physics_apply_force(x, y, 0, -phy_mass * jump_multiplier );
     
     jump_potential = jump_max_potential;
+    can_jump = false;
 }
 
 if ( keyboard_check_direct(vk_up) &amp;&amp; phy_linear_velocity_y &lt; -phy_mass * jump_multiplier/2 &amp;&amp; place_free(x, y + sprite_height / 2 + 5) &amp;&amp; jump_potential &gt; 0 )
@@ -180,7 +179,7 @@ if ( action_kick )
         animation_counter = 0;
     }
 }
-else if ( abs(phy_linear_velocity_y) &gt; 1 )
+else if ( !can_jump )
 {
     sprite_index = sprPlayerAir;
 }
@@ -247,7 +246,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>can_jump = true;
+            <string>if (phy_linear_velocity_y &gt;= 0) can_jump = true;
 </string>
           </argument>
         </arguments>
@@ -274,7 +273,7 @@ else
 /*draw_set_color(c_lime);
 draw_point(x, y + sprite_height / 2);
 
-draw_text(x, y, phy_linear_velocity_y);*/
+draw_text(x, y, can_jump);*/
 </string>
           </argument>
         </arguments>
