@@ -9,32 +9,40 @@
     <sound>sound\sndTech</sound>
     <sound>sound\sndKick</sound>
     <sound>sound\sndDoor</sound>
+    <sound>sound\sndMiniboss</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayerStanding</sprite>
     <sprite>sprites\sprPlayerWalking</sprite>
     <sprite>sprites\sprPlayerRunning</sprite>
     <sprite>sprites\sprPlayerAir</sprite>
+    <sprite>sprites\sprPlayerKick</sprite>
+    <sprite>sprites\sprPlayerSlide</sprite>
     <sprite>sprites\sprFloor</sprite>
     <sprite>sprites\sprPushboxMetal</sprite>
-    <sprite>sprites\sprPlayerKick</sprite>
     <sprite>sprites\sprBashableDoor</sprite>
     <sprite>sprites\sprGib</sprite>
+    <sprite>sprites\sprParticle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\playMusic.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemyTest</object>
-    <object>objects\objCollidable</object>
+    <object>objects\objStatic</object>
+    <object>objects\objDynamic</object>
     <object>objects\objFloor</object>
     <object>objects\objPushboxMetal</object>
     <object>objects\objBashableDoor</object>
-    <object>objects\objMusicTech</object>
+    <object>objects\objMusic</object>
     <object>objects\objGib</object>
     <object>objects\objGibspawner</object>
+    <object>objects\objParticleEmitter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmTesting</room>
