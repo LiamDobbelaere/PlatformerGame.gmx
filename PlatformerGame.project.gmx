@@ -33,6 +33,9 @@
   <scripts name="scripts">
     <script>scripts\playMusic.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\atebit</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemyTest</object>
@@ -45,6 +48,7 @@
     <object>objects\objGib</object>
     <object>objects\objGibspawner</object>
     <object>objects\objParticleEmitter</object>
+    <object>objects\objPause</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmTesting</room>

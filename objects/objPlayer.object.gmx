@@ -137,7 +137,10 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Controls
+            <string>//Pause Event
+if (global.pause) exit;
+
+///Controls
 
 velocity_x_divider = 1;
 
