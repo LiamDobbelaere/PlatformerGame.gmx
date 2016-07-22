@@ -49,6 +49,7 @@
     <object>objects\objGibspawner</object>
     <object>objects\objParticleEmitter</object>
     <object>objects\objPause</object>
+    <object>objects\objResize</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmTesting</room>
