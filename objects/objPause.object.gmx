@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.pause = true;
+            <string>global.pause = false;
 </string>
           </argument>
         </arguments>
@@ -85,14 +85,11 @@
 if (global.pause == true)
 {
     physics_pause_enable(false);
-    instance_activate_all();
     global.pause = false;
 }
 else
 {
     physics_pause_enable(true);
-    //instance_deactivate_all(true);
-    with (all) visible = true;
     global.pause = true;
 }
 
