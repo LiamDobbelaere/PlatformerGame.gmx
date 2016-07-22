@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1024</width>
   <height>768</height>
-  <vsnap>32</vsnap>
-  <hsnap>32</hsnap>
+  <vsnap>16</vsnap>
+  <hsnap>16</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
@@ -77,6 +77,8 @@
     <instance objName="objFloor" x="-32" y="-32" name="inst_2CAFA8B0" locked="0" code="" scaleX="1" scaleY="26" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="1024" y="-32" name="inst_E40348F7" locked="0" code="" scaleX="1" scaleY="26" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="0" y="-32" name="inst_1B38E40B" locked="0" code="" scaleX="32" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="592" y="512" name="inst_CA5A9A11" locked="0" code="" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="672" y="496" name="inst_F5E8F461" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgTileGrounds" x="32" y="736" w="32" h="32" xo="64" yo="0" id="10000002" name="inst_3CCC2709" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -209,6 +211,13 @@
     <tile bgName="bgTileGrounds" x="640" y="384" w="32" h="32" xo="96" yo="32" id="10000321" name="inst_D2243231" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="576" y="256" w="32" h="32" xo="0" yo="0" id="10000322" name="inst_033AD6CA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="608" y="256" w="32" h="32" xo="0" yo="64" id="10000323" name="inst_C3CDF409" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="592" y="512" w="16" h="16" xo="80" yo="96" id="10000325" name="inst_4F42ACE4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="608" y="512" w="16" h="16" xo="96" yo="96" id="10000326" name="inst_93AFA96B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="608" y="496" w="16" h="16" xo="96" yo="96" id="10000328" name="inst_5529E7AB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="624" y="496" w="16" h="16" xo="96" yo="96" id="10000329" name="inst_E511B109" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="640" y="496" w="16" h="16" xo="96" yo="96" id="10000330" name="inst_1D7A9C90" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="656" y="496" w="16" h="16" xo="96" yo="96" id="10000331" name="inst_81E5F225" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="672" y="496" w="16" h="16" xo="112" yo="96" id="10000332" name="inst_0873D6BE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

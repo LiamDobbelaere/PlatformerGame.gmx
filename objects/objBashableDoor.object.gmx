@@ -49,7 +49,8 @@
           <argument>
             <kind>1</kind>
             <string>if (image_single == 0 &amp;&amp; distance_to_object(objPlayer) &lt; 8 
-    &amp;&amp; (abs(objPlayer.phy_linear_velocity_x) &gt; 133 || (objPlayer.action_kick &amp;&amp; objPlayer.image_xscale == 1) ))
+    &amp;&amp; (abs(objPlayer.phy_linear_velocity_x) &gt; 133 || (objPlayer.action_kick &amp;&amp; objPlayer.image_xscale == 1)
+        || objPlayer.sprite_index == sprPlayerFloorslide ))
 {
     objPlayer.phy_linear_velocity_x = objPlayer.phy_linear_velocity_x / 2;
     phy_active = false;

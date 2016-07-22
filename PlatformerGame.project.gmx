@@ -18,6 +18,8 @@
     <sprite>sprites\sprPlayerAir</sprite>
     <sprite>sprites\sprPlayerKick</sprite>
     <sprite>sprites\sprPlayerSlide</sprite>
+    <sprite>sprites\sprPlayerCrawl</sprite>
+    <sprite>sprites\sprPlayerFloorslide</sprite>
     <sprite>sprites\sprFloor</sprite>
     <sprite>sprites\sprPushboxMetal</sprite>
     <sprite>sprites\sprBashableDoor</sprite>
