@@ -181,6 +181,7 @@ if ( keyboard_check_direct(controls_moveleft) &amp;&amp; phy_linear_velocity_x &
 {
     jump_potential = 0;
 }*/
+if place_free(x, y - 8) {
 
 if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) )
 {
@@ -272,7 +273,8 @@ if ( keyboard_check_released(controls_kick) &amp;&amp; abs(phy_linear_velocity_x
         }
     }
     
-    action_kick = true;
+    action_kick = true
+    }
 }
 </string>
           </argument>
