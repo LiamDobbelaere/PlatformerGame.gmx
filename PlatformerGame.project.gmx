@@ -54,6 +54,8 @@
     <object>objects\objResize</object>
     <object>objects\objButton</object>
     <object>objects\objButtonGotoMenu</object>
+    <object>objects\objPlatformMovingHor</object>
+    <object>objects\objPlatformMovingSwitch</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
