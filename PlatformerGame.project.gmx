@@ -54,11 +54,16 @@
     <object>objects\objResize</object>
     <object>objects\objButton</object>
     <object>objects\objButtonGotoMenu</object>
-    <object>objects\objQuitButton</object>
+    <objects name="Menu Buttons">
+      <object>objects\objQuitButton</object>
+      <object>objects\objFullscreenButton</object>
+      <object>objects\objOptions</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
     <room>rooms\rmTesting</room>
+    <room>rooms\rmOptions</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
