@@ -53,7 +53,9 @@
     <object>objects\objPause</object>
     <object>objects\objResize</object>
     <object>objects\objButton</object>
-    <object>objects\objButtonGotoMenu</object>
+    <objects name="Pause Buttons">
+      <object>objects\objButtonGotoMenu</object>
+    </objects>
     <objects name="Menu Buttons">
       <object>objects\objQuitButton</object>
       <object>objects\objFullscreenButton</object>
