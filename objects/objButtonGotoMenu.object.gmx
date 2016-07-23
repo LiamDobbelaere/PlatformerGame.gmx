@@ -25,7 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = 2;
+            <string>if (global.pause == false)
+{
+    object_set_visible(rmMenu,false)
+}
+
+image_xscale = 2;
 image_yscale = 2;
 
 image_single = 0;
@@ -134,7 +139,7 @@ else
 }
 
 draw_set_font(atebit);
-draw_text(x,y, "Main Menut");
+draw_text(x,y, "Main Menu");
 
 
 

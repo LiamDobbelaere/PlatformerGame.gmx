@@ -59,6 +59,7 @@
     draw_set_alpha(1);
     draw_text(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2, "Paused");
 }
+
 </string>
           </argument>
         </arguments>
@@ -82,17 +83,18 @@
           <argument>
             <kind>1</kind>
             <string>
-if (global.pause == true)
+if (global.pause)
 {
-    physics_pause_enable(false);
-    global.pause = false;
+    instance_deactivate_all( false );
+    instance_create( x, y, objPause );
+    instance_create(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2 + 32,objButtonGotoMenu);
 }
 else
 {
     physics_pause_enable(true);
-    global.pause = true;
+    global.pause = false;
     
-    instance_create(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2 + 32,objButtonGotoMenu);
+    instance_activate_all( );
 }
 
 </string>
