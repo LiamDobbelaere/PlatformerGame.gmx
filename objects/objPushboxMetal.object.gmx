@@ -90,9 +90,13 @@ phy_fixed_rotation = true; //Prevents object from rotating due to physics
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>2,2</point>
-    <point>30,0</point>
+    <point>32,30</point>
     <point>30,32</point>
     <point>2,32</point>
+    <point>0,30</point>
+    <point>0,2</point>
+    <point>2,0</point>
+    <point>30,0</point>
+    <point>32,2</point>
   </PhysicsShapePoints>
 </object>

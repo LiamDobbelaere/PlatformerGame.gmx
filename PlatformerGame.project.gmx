@@ -54,10 +54,21 @@
     <object>objects\objResize</object>
     <object>objects\objButton</object>
     <object>objects\objButtonGotoMenu</object>
+<<<<<<< HEAD
+    <objects name="Menu Buttons">
+      <object>objects\objQuitButton</object>
+      <object>objects\objFullscreenButton</object>
+      <object>objects\objOptions</object>
+    </objects>
+=======
+    <object>objects\objPlatformMovingHor</object>
+    <object>objects\objPlatformMovingSwitch</object>
+>>>>>>> origin/master
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
     <room>rooms\rmTesting</room>
+    <room>rooms\rmOptions</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
