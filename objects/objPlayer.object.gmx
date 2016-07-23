@@ -182,7 +182,7 @@ if ( keyboard_check_direct(controls_moveleft) &amp;&amp; phy_linear_velocity_x &
 }*/
 
 if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, objDynamic) ) {
-    if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) )
+//    if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) )
     {
         has_walljumped = false;
     }
