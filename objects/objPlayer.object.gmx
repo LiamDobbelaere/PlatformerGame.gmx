@@ -108,7 +108,7 @@ controls_kick = ord("F");
             <string>///Physics fixtures
 
 fixture_standing = physics_fixture_create()
-physics_fixture_set_box_shape(fixture_standing, 5, 5);
+physics_fixture_set_box_shape(fixture_standing, 6, 6);
 physics_fixture_set_density(fixture_standing, 2);
 physics_fixture_set_restitution(fixture_standing, 0);
 physics_fixture_set_linear_damping(fixture_standing, 0.1);
@@ -144,20 +144,16 @@ if (global.pause) exit;
 
 velocity_x_divider = 1;
 
-if ( keyboard_check_pressed(controls_downaction) )
-{
-    physics_remove_fixture(self, fixture_standing_bound);
-    fixture_standing_bound = noone;
-}
-
-if ( keyboard_check_released(controls_downaction) &amp;&amp; !place_meeting(x, y - 8, objStatic) )
-{
-    fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
-}
-
-if ( keyboard_check_direct (controls_downaction) || place_meeting(x, y - 8, objStatic) )
+if ( keyboard_check_direct (controls_downaction) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
 {
     is_crawling = true;
+    
+    if (fixture_standing_bound != noone)
+    {
+        physics_remove_fixture(self, fixture_standing_bound);
+        fixture_standing_bound = noone;
+    }
+    
     velocity_x_divider = 4;
 }
 else
