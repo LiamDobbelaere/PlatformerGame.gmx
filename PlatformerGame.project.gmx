@@ -25,9 +25,11 @@
     <sprite>sprites\sprBashableDoor</sprite>
     <sprite>sprites\sprGib</sprite>
     <sprite>sprites\sprParticle</sprite>
+    <sprite>sprites\sprButton</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
+    <background>background\bgStoneFloor</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -50,8 +52,11 @@
     <object>objects\objParticleEmitter</object>
     <object>objects\objPause</object>
     <object>objects\objResize</object>
+    <object>objects\objButton</object>
+    <object>objects\objButtonGotoMenu</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rmMenu</room>
     <room>rooms\rmTesting</room>
   </rooms>
   <help>
