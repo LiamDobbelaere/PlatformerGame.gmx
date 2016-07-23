@@ -54,6 +54,7 @@
     <object>objects\objResize</object>
     <object>objects\objButton</object>
     <object>objects\objButtonGotoMenu</object>
+    <object>objects\objQuitButton</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
