@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1536</width>
   <height>768</height>
-  <vsnap>32</vsnap>
-  <hsnap>32</hsnap>
+  <vsnap>16</vsnap>
+  <hsnap>16</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
@@ -75,7 +75,6 @@
     <instance objName="objParticleEmitter" x="48" y="0" name="inst_A0684F3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="592" y="512" name="inst_CA5A9A11" locked="0" code="" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="672" y="496" name="inst_F5E8F461" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
-    <instance objName="objFloor" x="32" y="432" name="inst_9CFF50FC" locked="0" code="" scaleX="13.4193544387817" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objPause" x="16" y="0" name="inst_AE7C9571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objResize" x="32" y="0" name="inst_14D3C088" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="736" y="640" name="inst_D5FC7DF0" locked="0" code="" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
@@ -100,6 +99,7 @@
     <instance objName="objPlatformMovingSwitch" x="384" y="352" name="inst_B4D86F77" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatformMovingHor" x="256" y="384" name="inst_53B0A3B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatformMovingHor" x="288" y="384" name="inst_9715FA9F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="32" y="432" name="inst_74EB5BED" locked="0" code="" scaleX="13" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgTileGrounds" x="32" y="736" w="32" h="32" xo="64" yo="0" id="10000002" name="inst_3CCC2709" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -265,7 +265,6 @@
     <tile bgName="bgTileGrounds" x="400" y="432" w="16" h="16" xo="80" yo="96" id="10000356" name="inst_98299A89" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="416" y="432" w="16" h="16" xo="80" yo="96" id="10000357" name="inst_2079473A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="432" y="432" w="16" h="16" xo="80" yo="96" id="10000358" name="inst_4FC80F39" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgTileGrounds" x="448" y="432" w="16" h="16" xo="80" yo="96" id="10000359" name="inst_E9791F48" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="736" y="640" w="32" h="32" xo="32" yo="0" id="10000362" name="inst_973C6A95" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="768" y="640" w="32" h="32" xo="32" yo="0" id="10000363" name="inst_8006A750" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="800" y="640" w="32" h="32" xo="32" yo="0" id="10000364" name="inst_4C9BBB75" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
