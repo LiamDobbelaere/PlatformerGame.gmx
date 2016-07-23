@@ -29,7 +29,7 @@
 
 phy_fixed_rotation = true; //Prevents object from rotating due to physics
 
-jump_multiplier = objPlayer.jump_multiplier / 4;
+jump_multiplier = 300 / 4;
 
 move_multiplier = 5;
 max_velocity_x = 200;

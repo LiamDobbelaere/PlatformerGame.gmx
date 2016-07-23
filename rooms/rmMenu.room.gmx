@@ -53,7 +53,6 @@
   <instances>
     <instance objName="objButton" x="320" y="256" name="inst_C5D5CFA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMusic" x="0" y="0" name="inst_777FE928" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objQuitButton" x="320" y="320" name="inst_7D990678" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -680,11 +680,11 @@ draw_text(x, y, phy_linear_velocity_y);*/
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>20,30</point>
-    <point>18,32</point>
+    <point>22,20</point>
+    <point>22,30</point>
+    <point>20,32</point>
     <point>14,32</point>
     <point>12,30</point>
     <point>12,20</point>
-    <point>14,20</point>
   </PhysicsShapePoints>
 </object>

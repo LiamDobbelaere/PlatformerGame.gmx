@@ -157,7 +157,7 @@ else
 }
 
 draw_set_font(atebit);
-draw_text(x,y, "Main Menu");
+draw_text(x,y, "Main Menut");
 
 
 
