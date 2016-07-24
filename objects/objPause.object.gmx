@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>-100</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.pause = false;
+            <string>pause = 0;
 </string>
           </argument>
         </arguments>
@@ -48,18 +48,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.pause = true)
+            <string>if (!pause) exit;
+
+if (pause)
 {
     draw_set_color(c_black);
-    draw_set_alpha(0.5);
+    draw_set_alpha(1);
     draw_rectangle(view_xview[0],view_yview[0],view_xview[0] + view_wview[0],view_yview[0] + view_hview[0],0);
     draw_set_halign(fa_center);
     draw_set_font(atebit);
     draw_set_color(c_white);
     draw_set_alpha(1);
-    draw_text(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2, "Paused");
+    draw_text(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2, "Paused");  
 }
-
 </string>
           </argument>
         </arguments>
@@ -82,15 +83,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.pause == true)
+            <string>if (pause = 0)
 {
+    pause = 1;
+    instance_deactivate_all(true);
     instance_create(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2 + 32,objButtonGotoMenu);
 }
 else
 {
-    global.pause = false;
-    physics_pause_enable(true);
-    
+    pause = 0;
+    instance_activate_all();
+    instance_deactivate_object(objButtonGotoMenu);
 }
 
 </string>
