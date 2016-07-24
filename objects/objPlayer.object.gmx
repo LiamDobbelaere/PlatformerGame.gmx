@@ -523,6 +523,48 @@ else
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///anti edge falling glitch
+
+if ( phy_speed_y = 0 ) {
+
+
+
+if ( sprite_index = sprPlayerAir ) and ( image_xscale = 1 )
+{
+phy_speed_x = -.1
+move_bounce_solid ( true )
+}
+
+if ( sprite_index = sprPlayerAir ) and ( image_xscale = -1 )
+{
+phy_speed_x = .1
+move_bounce_solid ( true )
+}
+
+
+
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="4" ename="objDynamic">
       <action>
@@ -675,11 +717,11 @@ draw_text(x, y, phy_linear_velocity_y);*/
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>22,20</point>
-    <point>22,30</point>
-    <point>20,32</point>
+    <point>20,20</point>
+    <point>22,22</point>
+    <point>18,32</point>
     <point>14,32</point>
-    <point>12,30</point>
-    <point>12,20</point>
+    <point>10,30</point>
+    <point>10,22</point>
   </PhysicsShapePoints>
 </object>
