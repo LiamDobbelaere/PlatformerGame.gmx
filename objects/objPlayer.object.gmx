@@ -302,7 +302,6 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
             <string>///Controls OLD
 
 //Pause Event
-if (global.pause) exit;
 
 velocity_x_divider = 1;
 
