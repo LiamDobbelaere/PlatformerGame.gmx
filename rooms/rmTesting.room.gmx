@@ -75,7 +75,6 @@
     <instance objName="objFloor" x="592" y="512" name="inst_CA5A9A11" locked="0" code="" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="672" y="496" name="inst_F5E8F461" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objPause" x="16" y="0" name="inst_AE7C9571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objResize" x="32" y="0" name="inst_14D3C088" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="736" y="640" name="inst_D5FC7DF0" locked="0" code="" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="864" y="672" name="inst_D3E6F9CC" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="928" y="672" name="inst_49C5F4F1" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
