@@ -56,8 +56,6 @@ max_velocity_x = 200;
           <argument>
             <kind>1</kind>
             <string>//Pause event
-if (global.pause) exit;
-
 ///AI Logic
 
 if (instance_exists(objPlayer)) 

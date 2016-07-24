@@ -139,9 +139,6 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
             <kind>1</kind>
             <string>///Controls
 /*
-//Pause Event
-if (global.pause) exit;
-
 velocity_x_divider = 1;
 
 if ( keyboard_check_direct (controls_downaction) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
@@ -302,8 +299,6 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
             <string>///Controls OLD
 
 //Pause Event
-if (global.pause) exit;
-
 velocity_x_divider = 1;
 
 if ( keyboard_check_direct (controls_downaction) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
