@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>7361861</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>playMusic(sndTech);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

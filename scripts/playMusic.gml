@@ -5,3 +5,5 @@ if (instance_exists(objMusic))
 
 var newSong = instance_create(0, 0, objMusic);
 newSong.clip = argument0;
+//newSong.fade = argument1;
+
