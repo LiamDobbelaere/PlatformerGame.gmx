@@ -76,7 +76,6 @@
     </objects>
     <object>objects\objPlatformMovingHor</object>
     <object>objects\objPlatformMovingSwitch</object>
-    <object>objects\objBoot</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>

@@ -10,12 +10,22 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>ini_open("settings.ini");
-global.key_up = ini_read_real("controls", "up", keyboard_get_map("vk_up"));
-global.key_left = ini_read_real("controls", "left", keyboard_get_map("vk_left"));
-global.key_right = ini_read_real("controls", "right", keyboard_get_map("vk_right"));
-global.key_down = ini_read_real("controls", "down", keyboard_get_map("vk_down"));
-ini_close();
+  <code>if (file_exists("settings.ini"))
+{
+    ini_open("settings.ini");
+    global.key_up = ini_read_real("controls", "up", keyboard_get_map("vk_up"));
+    global.key_left = ini_read_real("controls", "left", keyboard_get_map("vk_left"));
+    global.key_right = ini_read_real("controls", "right", keyboard_get_map("vk_right"));
+    global.key_down = ini_read_real("controls", "down", keyboard_get_map("vk_down"));
+    ini_close();
+}
+else
+{
+    global.key_up = vk_up;
+    global.key_down = vk_down;
+    global.key_left = vk_left;
+    global.key_right = vk_right;
+}
 
 room_goto(rmMenu);</code>
   <enableViews>0</enableViews>
