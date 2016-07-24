@@ -76,13 +76,14 @@
     </objects>
     <object>objects\objPlatformMovingHor</object>
     <object>objects\objPlatformMovingSwitch</object>
+    <object>objects\objBoot</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rmBoot</room>
     <room>rooms\rmMenu</room>
     <room>rooms\rmTesting</room>
     <room>rooms\rmOptions</room>
     <room>rooms\rmControls</room>
-    <room>rooms\rmBoot</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -80,10 +80,10 @@ part_emitter.active = false;
             <kind>1</kind>
             <string>///Control bindings
 
-controls_moveleft = vk_left;
-controls_moveright = vk_right;
-controls_upaction = vk_up;
-controls_downaction = vk_down;
+controls_moveleft = global.key_left;
+controls_moveright = global.key_right;
+controls_upaction = global.key_up;
+controls_downaction = global.key_down;
 controls_kick = ord("F");
 </string>
           </argument>
@@ -540,27 +540,20 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///anti edge falling glitch
+            <string>///Anti edge falling glitch
 
 if ( phy_speed_y = 0 ) {
-
-
-
-if ( sprite_index = sprPlayerAir ) and ( image_xscale = 1 )
-{
-phy_speed_x = -.1
-move_bounce_solid ( true )
-}
-
-if ( sprite_index = sprPlayerAir ) and ( image_xscale = -1 )
-{
-phy_speed_x = .1
-move_bounce_solid ( true )
-}
-
-
-
-
+    if ( sprite_index = sprPlayerAir ) and ( image_xscale = 1 )
+    {
+        phy_speed_x = -.1
+        move_bounce_solid ( true )
+    }
+    
+    if ( sprite_index = sprPlayerAir ) and ( image_xscale = -1 )
+    {
+        phy_speed_x = .1
+        move_bounce_solid ( true )
+    }
 }
 </string>
           </argument>

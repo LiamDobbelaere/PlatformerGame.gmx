@@ -28,7 +28,7 @@
             <string>window_width = window_get_width();
 window_height = window_get_height();
 
-last_room = rmMenu;
+last_room = rmBoot;
 
 window_set_fullscreen(true);
 </string>
