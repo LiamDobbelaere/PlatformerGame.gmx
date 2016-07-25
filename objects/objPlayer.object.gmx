@@ -545,13 +545,13 @@ if ( phy_speed_y = 0 ) {
 
 
 
-if ( sprite_index = sprPlayerAir ) and ( image_xscale = 1 )
+if ( sprite_index = sprPlayerAir ) and ( place_meeting ( x+2, y, objFloor ) )
 {
 phy_speed_x = -.1
 move_bounce_solid ( true )
 }
 
-if ( sprite_index = sprPlayerAir ) and ( image_xscale = -1 )
+if ( sprite_index = sprPlayerAir ) and ( place_meeting ( x-2, y, objFloor ) )
 {
 phy_speed_x = .1
 move_bounce_solid ( true )

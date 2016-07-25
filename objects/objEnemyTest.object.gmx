@@ -33,6 +33,7 @@ jump_multiplier = 300 / 4;
 
 move_multiplier = 5;
 max_velocity_x = 200;
+spot = false
 </string>
           </argument>
         </arguments>
@@ -59,17 +60,21 @@ max_velocity_x = 200;
 ///AI Logic
 
 if (instance_exists(objPlayer)) 
-{
+{ 
     if (distance_to_point(objPlayer.x, objPlayer.y) &lt;= 256 
         &amp;&amp; !collision_line(x, y, objPlayer.x, objPlayer.y, objFloor, false, true)) 
+        or spot = true
         {
+        spot = true
 
         if (objPlayer.x &gt;= x) &amp;&amp; (phy_linear_velocity_x &lt; max_velocity_x) {
             physics_apply_force(x, y, (phy_mass * move_multiplier), 0);
+            
         }
 
         if (objPlayer.x &lt;= x) &amp;&amp; (phy_linear_velocity_x &gt; -max_velocity_x) {
             physics_apply_force(x, y, -(phy_mass * move_multiplier), 0);
+             
         }
 
         /*if ( ( objPlayer.y &lt;= y-4 ) &amp;&amp; !place_free(x, y + sprite_height / 2 - 6) )
@@ -89,7 +94,11 @@ if (instance_exists(objPlayer))
         }
 
     }
+    
+
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -113,7 +122,9 @@ if (instance_exists(objPlayer))
             <string>///get hit / hit back
 if ( place_meeting ( x, y, objPlayer ) )
 {
+
 if ( x &lt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = -1 )
+or ( x &gt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = 1 )
 {
 if ( objPlayer.sprite_index = sprPlayerKick )
 {
@@ -125,6 +136,18 @@ if ( objPlayer.sprite_index = sprPlayerKick )
 
 }
 
+
+
+
+
+if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
+or ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
+{
+sprite_index = sprPlayerKick 
+if ( image_index &gt;=  4 ){
+room_restart()
+}
+}
 }
 </string>
           </argument>
@@ -174,8 +197,15 @@ else
     sprite_index = sprPlayerStanding;
     image_speed = 0.05;
 }
-
-
+if (distance_to_point(objPlayer.x, objPlayer.y) &lt;= 10
+        &amp;&amp; !collision_line(x, y, objPlayer.x, objPlayer.y, objFloor, false, true)){ 
+if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
+or ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
+and ( phy_speed_x &lt;= 1 )
+{
+sprite_index = sprPlayerKick 
+}
+}
 </string>
           </argument>
         </arguments>
