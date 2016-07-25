@@ -30,6 +30,7 @@
     <sprite>sprites\sprParticle</sprite>
     <sprite>sprites\sprButton</sprite>
     <sprite>sprites\sprKeyController</sprite>
+    <sprite>sprites\sprResolution</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -38,6 +39,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\playMusic.gml</script>
+    <script>scripts\setResolution.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
@@ -62,17 +64,22 @@
     </objects>
     <objects name="Menu Buttons">
       <object>objects\objQuitButton</object>
-      <object>objects\objFullscreenButton</object>
       <object>objects\objOptions</object>
-      <object>objects\objClose</object>
-      <object>objects\objControls</object>
-      <object>objects\objSaveChanges</object>
       <objects name="Control Keys">
         <object>objects\objControlUp</object>
         <object>objects\objControlLeft</object>
         <object>objects\objControlRight</object>
         <object>objects\objControlDown</object>
         <object>objects\objKeyController</object>
+        <object>objects\objSaveChanges</object>
+        <object>objects\objClose</object>
+      </objects>
+      <objects name="Options">
+        <object>objects\objController</object>
+        <object>objects\objControls</object>
+        <object>objects\objResolution</object>
+        <object>objects\objResolutions</object>
+        <object>objects\objFullscreenButton</object>
       </objects>
     </objects>
     <object>objects\objPlatformMovingHor</object>
@@ -84,6 +91,7 @@
     <room>rooms\rmTesting</room>
     <room>rooms\rmOptions</room>
     <room>rooms\rmControls</room>
+    <room>rooms\rmResolutions</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
