@@ -566,11 +566,13 @@ phy_speed_x = .1
 move_bounce_solid ( true )
 }
 
-
-
-
-
 }
+
+if phy_speed_y &lt;= -3
+{
+phy_speed_y = -3
+}
+
 </string>
           </argument>
         </arguments>

@@ -31,6 +31,7 @@
     <sprite>sprites\sprButton</sprite>
     <sprite>sprites\sprKeyController</sprite>
     <sprite>sprites\sprResolution</sprite>
+    <sprite>sprites\sprPlatformMovingHor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
