@@ -56,8 +56,9 @@ part_emitter.target_object = objPlayer;
 part_emitter.active = false;
 */
 
+///Prevents constant movement when controller is plugged in. Decimal can be altered.
 
-
+gamepad_set_axis_deadzone(0,0.3);
 </string>
           </argument>
         </arguments>
@@ -276,6 +277,12 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
     }
   }
 }
+
+key_left = -(keyboard_check(vk_left) || (gamepad_axis_value(0,gp_axislh) &lt; 0));
+key_right = keyboard_check(vk_right) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
+key_up = keyboard_check(vk_up) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
+key_down = keyboard_check(vk_down) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
+key_kick = keyboard_check_pressed(ord("F")) || (gamepad_button_check_pressed(0,gp_face1));
 </string>
           </argument>
         </arguments>
