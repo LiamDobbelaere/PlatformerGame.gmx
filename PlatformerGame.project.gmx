@@ -45,6 +45,7 @@
     <font>fonts\atebit</font>
   </fonts>
   <objects name="objects">
+    <object>objects\objPlayer</object>
     <object>objects\objEnemyTest</object>
     <object>objects\objStatic</object>
     <object>objects\objDynamic</object>
