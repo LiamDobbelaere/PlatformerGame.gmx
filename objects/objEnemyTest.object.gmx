@@ -57,6 +57,7 @@ spot = false
           <argument>
             <kind>1</kind>
             <string>//Pause event
+
 ///AI Logic
 
 if (instance_exists(objPlayer)) 
