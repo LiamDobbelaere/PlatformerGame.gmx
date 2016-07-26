@@ -37,6 +37,7 @@
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
     <background>background\bgStoneFloor</background>
+    <background>background\bgStoneFloorMossy</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -45,6 +46,7 @@
     <script>scripts\setControlsFor.gml</script>
     <script>scripts\saveControls.gml</script>
     <script>scripts\updateControlsList.gml</script>
+    <script>scripts\doResize.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
@@ -87,6 +89,7 @@
     <room>rooms\rmMainMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
+    <room>rooms\rmLevelOneA</room>
     <room>rooms\rmTesting</room>
     <room>rooms\rmResolutions</room>
   </rooms>
