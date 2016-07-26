@@ -122,6 +122,72 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Switching init
+
+if (global.switchreality)
+{    
+    audio_play_sound(sndSwitchOut, 0, false);
+        
+    phy_position_x = global.target_x;
+    phy_position_y = global.target_y;
+    
+    phy_linear_velocity_x = global.target_xvel;
+    phy_linear_velocity_y = global.target_yvel;
+    sprite_index =  global.target_sprindex 
+    
+    global.switchreality = false;
+    
+    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    emitter.emit_rate = room_speed / 32;
+    emitter.radius = 16;
+    emitter.target_sprite = sprSwitch;
+    emitter.max_emits = 8;
+    emitter.blend_color = c_white;
+    emitter.active = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(global.linked_room);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -666,6 +732,29 @@ phy_speed_y = -3
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -690,6 +779,56 @@ draw_point(x, y + sprite_height / 2);
 draw_text(x, y, phy_linear_velocity_y);*/
 //flag = phy_debug_render_coms | phy_debug_render_shapes
 //physics_world_draw_debug(flag);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.switchreality = false) {
+
+    global.switchreality = true;
+    global.target_x = phy_position_x;
+    global.target_y = phy_position_y;
+    global.target_xvel = phy_linear_velocity_x;
+    global.target_yvel = phy_linear_velocity_y;
+    global.target_sprindex = sprite_index;
+    
+    background_colour = c_white;
+    image_blend = c_black;
+    with (objFloor) {
+        sprite_index = sprFloorswitching
+        visible = true;
+        image_blend = c_black;
+    }
+    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    emitter.emit_rate = room_speed / 32;
+    emitter.radius = 16;
+    emitter.target_sprite = sprSwitch;
+    emitter.active = true;
+    
+    audio_play_sound(sndSwitch, 0, false);
+    
+    physics_pause_enable(true);
+    
+    alarm[0] = room_speed / 2;
+}
 </string>
           </argument>
         </arguments>

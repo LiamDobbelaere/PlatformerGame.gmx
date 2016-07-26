@@ -31,6 +31,7 @@ else
 }
 
 global.font = font_add_sprite(sprFont, ord("!"), true, 2);
+global.switchreality = false;
 
 room_goto_next();
 //room_goto(rmMenu);</code>

@@ -11,6 +11,8 @@
     <sound>sound\sndKick</sound>
     <sound>sound\sndDoor</sound>
     <sound>sound\sndMiniboss</sound>
+    <sound>sound\sndSwitch</sound>
+    <sound>sound\sndSwitchOut</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="player">
@@ -32,6 +34,8 @@
     <sprite>sprites\sprKeyController</sprite>
     <sprite>sprites\sprPlatformMovingHor</sprite>
     <sprite>sprites\sprFont</sprite>
+    <sprite>sprites\sprFloorswitching</sprite>
+    <sprite>sprites\sprSwitch</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -75,6 +79,7 @@
     <object>objects\objMenuOptions</object>
     <object>objects\objMenuControls</object>
     <object>objects\objKeyController</object>
+    <object>objects\objParticle</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
@@ -82,6 +87,7 @@
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
     <room>rooms\rmLevelOneA</room>
+    <room>rooms\rmLevelOneB</room>
     <room>rooms\rmTesting</room>
   </rooms>
   <help>
