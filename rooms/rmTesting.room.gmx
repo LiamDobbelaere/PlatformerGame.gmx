@@ -10,7 +10,8 @@
   <persistent>0</persistent>
   <colour>7361861</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic(sndTech);</code>
+  <code>global.linked_room = rmTesting;
+playMusic(sndTech);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

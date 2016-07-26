@@ -13,6 +13,7 @@
     <sound>sound\sndMiniboss</sound>
     <sound>sound\sndSwitch</sound>
     <sound>sound\sndSwitchOut</sound>
+    <sound>sound\sndSlideLoop</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="player">
@@ -37,6 +38,7 @@
     <sprite>sprites\sprSwitch</sprite>
     <sprite>sprites\sprSwitchReverse</sprite>
     <sprite>sprites\sprGuiFont</sprite>
+    <sprite>sprites\sprSpark</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>

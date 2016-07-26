@@ -48,8 +48,9 @@ slide_max_potential = room_speed;
 
 is_crawling = false;
 
-move_multiplier = 5;
-max_velocity_x = 200;
+move_slowdown_factor = 0.95;
+move_multiplier = 7;
+max_velocity_x = 128;
 
 action_kick = false;
 
@@ -168,6 +169,41 @@ else
 {
     switching_ready = true;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sliding particles/audio
+
+slide_loop = audio_play_sound(sndSlideLoop, 0, true);
+audio_sound_gain(slide_loop, 0, 0);
+
+spark_emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+
+spark_emitter.emit_rate = room_speed / 16;
+spark_emitter.blend_color = c_yellow;
+spark_emitter.radius = 8;
+spark_emitter.constrain_x = true;
+spark_emitter.target_sprite = sprSpark;
+spark_emitter.alternate_sides = true;
+spark_emitter.active = false;
+
 </string>
           </argument>
         </arguments>
@@ -644,6 +680,7 @@ else if ( !place_meeting(x, y + 2, objStatic) &amp;&amp; !place_meeting(x, y + 2
     }
     else
     {
+        spark_emitter.active = false;
         sprite_index = sprPlayerAir;    
     }
 }
@@ -657,14 +694,14 @@ else if ( is_crawling )
 }
 else if ( phy_linear_velocity_x &gt; 5 )
 {
-    if (phy_linear_velocity_x &lt; max_velocity_x/1.5) sprite_index = sprPlayerWalking;
+    if (phy_linear_velocity_x &lt; max_velocity_x/1.1) sprite_index = sprPlayerWalking;
     else sprite_index = sprPlayerRunning;
 
     image_speed = abs(phy_linear_velocity_x) / 400;
 }
 else if ( phy_linear_velocity_x &lt; -5 )
 {
-    if (phy_linear_velocity_x &gt; -max_velocity_x/1.5) sprite_index = sprPlayerWalking;
+    if (phy_linear_velocity_x &gt; -max_velocity_x/1.1) sprite_index = sprPlayerWalking;
     else sprite_index = sprPlayerRunning;
     
     image_speed = abs(phy_linear_velocity_x) / 400;
@@ -721,6 +758,57 @@ if phy_speed_y &lt;= -3
 {
 phy_speed_y = -3
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Physics movement modifiers
+
+if (!keyboard_check_direct(controls_moveright) &amp;&amp; !keyboard_check_direct(controls_moveleft) &amp;&amp; !keyboard_check_direct(controls_downaction))
+{
+    phy_linear_velocity_x = phy_linear_velocity_x * move_slowdown_factor;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Spark location
+
+spark_emitter.x = phy_position_x;
+spark_emitter.y = phy_position_y + 16;
 
 </string>
           </argument>
@@ -808,6 +896,23 @@ phy_speed_y = -3
           <argument>
             <kind>1</kind>
             <string>if (phy_linear_velocity_y &gt;= 0) can_jump = true;
+
+if ( abs(phy_linear_velocity_x) &gt; 64 &amp;&amp; is_crawling )
+{
+    if (!spark_emitter.active)
+    {   
+        spark_emitter.active = true;
+        audio_sound_gain(slide_loop, 1, 250);
+    }
+}
+else
+{
+    if (spark_emitter.active = true) 
+    {
+        spark_emitter.active = false;
+        audio_sound_gain(slide_loop, 0, 250);
+    }
+}
 </string>
           </argument>
         </arguments>

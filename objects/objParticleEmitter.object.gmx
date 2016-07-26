@@ -31,6 +31,8 @@ radius = 8;
 active = false;
 max_emits = -1;
 blend_color = c_black;
+alternate_sides = false;
+constrain_x = false;
 
 alarm[0] = emit_rate;
 </string>
@@ -57,12 +59,21 @@ alarm[0] = emit_rate;
             <kind>1</kind>
             <string>if (active &amp;&amp; max_emits != 0)
 {
-    var part = instance_create(x + random_range(-radius, radius), 
-                               y + random_range(-radius, radius), objParticle);
+    xSpawn = x + random_range(-radius, radius);
+    ySpawn = y + random_range(-radius, radius);
+
+    if (constrain_x) ySpawn = y;
+
+    var part = instance_create(xSpawn, ySpawn, objParticle);
     part.sprite_index = target_sprite;
     part.image_blend = blend_color;
     part.image_xscale = random_range(0.5, 1);
     part.image_yscale = part.image_xscale;
+    
+    if (alternate_sides)
+    {
+        part.image_xscale = part.image_xscale * choose(-1, 1);
+    }
     
     if (max_emits &gt; 0) max_emits -= 1;
 }
