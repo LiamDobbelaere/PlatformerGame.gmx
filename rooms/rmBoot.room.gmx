@@ -18,6 +18,7 @@
     global.key_right = ini_read_real("controls", "right", keyboard_get_map("vk_right"));
     global.key_down = ini_read_real("controls", "down", keyboard_get_map("vk_down"));
     global.key_kick = ini_read_real("controls", "kick", keyboard_get_map(ord("F")));
+    global.key_switch = ini_read_real("controls", "switch", keyboard_get_map("vk_space"));
     
     ini_close();
 }
@@ -27,7 +28,8 @@ else
     global.key_down = vk_down;
     global.key_left = vk_left;
     global.key_right = vk_right;
-    global.key_right = ord("F");
+    global.key_kick = ord("F");
+    global.key_switch = vk_space;
 }
 
 global.font = font_add_sprite(sprGuiFont, ord("!"), false, 2);

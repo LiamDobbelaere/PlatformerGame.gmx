@@ -50,6 +50,10 @@ if (newKey != vk_escape)
         case "kick":
             global.key_kick = newKey;
         break;
+        
+        case "switch":
+            global.key_switch = newKey;
+        break;
     }
 }
 

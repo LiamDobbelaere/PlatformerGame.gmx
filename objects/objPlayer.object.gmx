@@ -558,7 +558,58 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Reality switching controls
+
+if (keyboard_check_pressed(global.key_switch) &amp;&amp; global.switchreality = false &amp;&amp; switching_ready) {
+
+    global.switchreality = true;
+    global.target_x = phy_position_x;
+    global.target_y = phy_position_y;
+    global.target_xvel = phy_linear_velocity_x;
+    global.target_yvel = phy_linear_velocity_y;
+    global.target_sprindex = sprite_index;
+    
+    //background_colour = c_white;
+    //image_blend = c_black;
+    instance_create(0, 0, objSwitchOverlay);
+    
+    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    emitter.emit_rate = room_speed / 32;
+    emitter.blend_color = c_white;
+    emitter.radius = 16;
+    emitter.target_sprite = sprSwitchReverse;
+    emitter.active = true;
+    
+    audio_play_sound(sndSwitch, 0, false);
+    
+    physics_pause_enable(true);
+    image_speed = 0;
+    
+    alarm[0] = room_speed / 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Animations
+
+if (global.switchreality) exit;
 
 if ( phy_linear_velocity_x &gt; 5 ) image_xscale = 1;
 else if ( phy_linear_velocity_x &lt; -5 ) image_xscale = -1;
@@ -809,54 +860,6 @@ draw_point(x, y + sprite_height / 2);
 draw_text(x, y, phy_linear_velocity_y);*/
 //flag = phy_debug_render_coms | phy_debug_render_shapes
 //physics_world_draw_debug(flag);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (global.switchreality = false &amp;&amp; switching_ready) {
-
-    global.switchreality = true;
-    global.target_x = phy_position_x;
-    global.target_y = phy_position_y;
-    global.target_xvel = phy_linear_velocity_x;
-    global.target_yvel = phy_linear_velocity_y;
-    global.target_sprindex = sprite_index;
-    
-    //background_colour = c_white;
-    //image_blend = c_black;
-    instance_create(0, 0, objSwitchOverlay);
-    
-    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
-    emitter.emit_rate = room_speed / 32;
-    emitter.blend_color = c_white;
-    emitter.radius = 16;
-    emitter.target_sprite = sprSwitchReverse;
-    emitter.active = true;
-    
-    audio_play_sound(sndSwitch, 0, false);
-    
-    physics_pause_enable(true);
-    
-    alarm[0] = room_speed / 2;
-}
 </string>
           </argument>
         </arguments>

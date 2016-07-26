@@ -7,5 +7,6 @@ if !instance_exists(objKeyController)
     ini_write_real("controls", "right", global.key_right);
     ini_write_real("controls", "down", global.key_down);
     ini_write_real("controls", "kick", global.key_kick);
+    ini_write_real("controls", "switch", global.key_switch);
     ini_close();
 }
