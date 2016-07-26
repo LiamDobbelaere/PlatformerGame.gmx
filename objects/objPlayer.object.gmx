@@ -140,29 +140,6 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>view_hview[0]=384
-
-view_wview[0]=512
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Controls
 /*
 velocity_x_divider = 1;
@@ -684,31 +661,6 @@ phy_speed_y = -3
           <argument>
             <kind>1</kind>
             <string>if (phy_linear_velocity_y &gt;= 0) can_jump = true;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>view_hview[0]=384
-
-view_wview[0]=512
 </string>
           </argument>
         </arguments>
