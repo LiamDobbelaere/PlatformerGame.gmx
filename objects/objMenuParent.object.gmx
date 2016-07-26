@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu_options[0] = "! No opt. !";
+            <string>doResize();
+
+menu_options[0] = "! No opt. !";
 
 menu_selection = 0;
 keyboard_selection = -1;
@@ -146,6 +148,11 @@ if (keyboard_check_pressed(vk_up))
         draw_text(buttonX, buttonY, menu_options[i]);  
     } 
 }
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+draw_set_color(c_blue);
+draw_text(0, 0, room_width);
+draw_text(0, 32, room_height);
 </string>
           </argument>
         </arguments>
