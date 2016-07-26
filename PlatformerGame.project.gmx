@@ -30,7 +30,6 @@
     <sprite>sprites\sprParticle</sprite>
     <sprite>sprites\sprButton</sprite>
     <sprite>sprites\sprKeyController</sprite>
-    <sprite>sprites\sprResolution</sprite>
     <sprite>sprites\sprPlatformMovingHor</sprite>
     <sprite>sprites\sprFont</sprite>
   </sprites>
@@ -42,7 +41,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\playMusic.gml</script>
-    <script>scripts\setResolution.gml</script>
     <script>scripts\setControlsFor.gml</script>
     <script>scripts\saveControls.gml</script>
     <script>scripts\updateControlsList.gml</script>
@@ -69,12 +67,6 @@
     <objects name="Pause Buttons">
       <object>objects\objButtonGotoMenu</object>
     </objects>
-    <objects name="Menu Buttons">
-      <objects name="Options">
-        <object>objects\objController</object>
-        <object>objects\objResolution</object>
-      </objects>
-    </objects>
     <object>objects\objPlatformMovingHor</object>
     <object>objects\objPlatformMovingSwitch</object>
     <object>objects\objMenuParent</object>
@@ -91,7 +83,6 @@
     <room>rooms\rmControlsMenu</room>
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmTesting</room>
-    <room>rooms\rmResolutions</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
