@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
-menu_options[0] = "Main menu";
-menu_options[1] = "Resume";
+menu_options[0] = "MAIN MENU";
+menu_options[1] = "RESUME";
 
 </string>
           </argument>

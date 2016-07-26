@@ -33,9 +33,9 @@
     <sprite>sprites\sprButton</sprite>
     <sprite>sprites\sprKeyController</sprite>
     <sprite>sprites\sprPlatformMovingHor</sprite>
-    <sprite>sprites\sprFont</sprite>
     <sprite>sprites\sprFloorswitching</sprite>
     <sprite>sprites\sprSwitch</sprite>
+    <sprite>sprites\sprGuiFont</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>

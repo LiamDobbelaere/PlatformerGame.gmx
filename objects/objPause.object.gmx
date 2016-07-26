@@ -59,7 +59,7 @@ if (pause)
     draw_set_font(global.font);
     draw_set_color(c_white);
     draw_set_alpha(1);
-    draw_text(view_xview[0] + view_wview[0]/2, view_yview[0] + 32, "Paused");  
+    draw_text(view_xview[0] + view_wview[0]/2, view_yview[0] + 32, "PAUSED");  
 }
 </string>
           </argument>

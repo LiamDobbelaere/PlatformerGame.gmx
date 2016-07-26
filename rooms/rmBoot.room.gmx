@@ -30,7 +30,7 @@ else
     global.key_right = ord("F");
 }
 
-global.font = font_add_sprite(sprFont, ord("!"), true, 2);
+global.font = font_add_sprite(sprGuiFont, ord("!"), false, 2);
 global.switchreality = false;
 
 room_goto_next();

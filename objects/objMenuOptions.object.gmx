@@ -27,9 +27,9 @@
             <kind>1</kind>
             <string>event_inherited();
 
-menu_options[0] = "Fullscreen";
-menu_options[1] = "Controls";
-menu_options[2] = "Back";
+menu_options[0] = "FULLSCREEN";
+menu_options[1] = "CONTROLS";
+menu_options[2] = "BACK";
 </string>
           </argument>
         </arguments>
