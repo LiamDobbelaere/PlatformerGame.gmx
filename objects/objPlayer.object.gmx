@@ -681,6 +681,7 @@ else if ( !place_meeting(x, y + 2, objStatic) &amp;&amp; !place_meeting(x, y + 2
     else
     {
         spark_emitter.active = false;
+        audio_sound_gain(slide_loop, 0, 0);
         sprite_index = sprPlayerAir;    
     }
 }
