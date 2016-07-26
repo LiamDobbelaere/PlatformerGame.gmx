@@ -30,6 +30,7 @@ doResize();
 
 randomize();
 
+switching_ready = false;
 phy_fixed_rotation = true; //Prevents object from rotating due to physics
 
 jump_multiplier = 300;
@@ -160,7 +161,36 @@ if (global.switchreality)
     emitter.max_emits = 8;
     emitter.blend_color = c_white;
     emitter.active = true;
+    
+    alarm[1] = room_speed / 2;
 }
+else
+{
+    switching_ready = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switching_ready = true;
 </string>
           </argument>
         </arguments>
@@ -801,7 +831,7 @@ draw_text(x, y, phy_linear_velocity_y);*/
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.switchreality = false) {
+            <string>if (global.switchreality = false &amp;&amp; switching_ready) {
 
     global.switchreality = true;
     global.target_x = phy_position_x;
@@ -810,17 +840,15 @@ draw_text(x, y, phy_linear_velocity_y);*/
     global.target_yvel = phy_linear_velocity_y;
     global.target_sprindex = sprite_index;
     
-    background_colour = c_white;
-    image_blend = c_black;
-    with (objFloor) {
-        sprite_index = sprFloorswitching
-        visible = true;
-        image_blend = c_black;
-    }
+    //background_colour = c_white;
+    //image_blend = c_black;
+    instance_create(0, 0, objSwitchOverlay);
+    
     var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
     emitter.emit_rate = room_speed / 32;
+    emitter.blend_color = c_white;
     emitter.radius = 16;
-    emitter.target_sprite = sprSwitch;
+    emitter.target_sprite = sprSwitchReverse;
     emitter.active = true;
     
     audio_play_sound(sndSwitch, 0, false);

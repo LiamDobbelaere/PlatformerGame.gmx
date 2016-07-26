@@ -61,6 +61,8 @@ alarm[0] = emit_rate;
                                y + random_range(-radius, radius), objParticle);
     part.sprite_index = target_sprite;
     part.image_blend = blend_color;
+    part.image_xscale = random_range(0.5, 1);
+    part.image_yscale = part.image_xscale;
     
     if (max_emits &gt; 0) max_emits -= 1;
 }
