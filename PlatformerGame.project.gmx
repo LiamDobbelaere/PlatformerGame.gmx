@@ -32,6 +32,7 @@
     <sprite>sprites\sprKeyController</sprite>
     <sprite>sprites\sprResolution</sprite>
     <sprite>sprites\sprPlatformMovingHor</sprite>
+    <sprite>sprites\sprFont</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -41,6 +42,9 @@
   <scripts name="scripts">
     <script>scripts\playMusic.gml</script>
     <script>scripts\setResolution.gml</script>
+    <script>scripts\setControlsFor.gml</script>
+    <script>scripts\saveControls.gml</script>
+    <script>scripts\updateControlsList.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
@@ -64,34 +68,26 @@
       <object>objects\objButtonGotoMenu</object>
     </objects>
     <objects name="Menu Buttons">
-      <object>objects\objQuitButton</object>
-      <object>objects\objOptions</object>
-      <objects name="Control Keys">
-        <object>objects\objControlUp</object>
-        <object>objects\objControlLeft</object>
-        <object>objects\objControlRight</object>
-        <object>objects\objControlDown</object>
-        <object>objects\objKeyController</object>
-        <object>objects\objSaveChanges</object>
-        <object>objects\objClose</object>
-      </objects>
       <objects name="Options">
         <object>objects\objController</object>
-        <object>objects\objControls</object>
         <object>objects\objResolution</object>
-        <object>objects\objResolutions</object>
-        <object>objects\objFullscreenButton</object>
       </objects>
     </objects>
     <object>objects\objPlatformMovingHor</object>
     <object>objects\objPlatformMovingSwitch</object>
+    <object>objects\objMenuParent</object>
+    <object>objects\objMenuMain</object>
+    <object>objects\objMenuPause</object>
+    <object>objects\objMenuOptions</object>
+    <object>objects\objMenuControls</object>
+    <object>objects\objKeyController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
-    <room>rooms\rmMenu</room>
+    <room>rooms\rmMainMenu</room>
+    <room>rooms\rmOptionsMenu</room>
+    <room>rooms\rmControlsMenu</room>
     <room>rooms\rmTesting</room>
-    <room>rooms\rmOptions</room>
-    <room>rooms\rmControls</room>
     <room>rooms\rmResolutions</room>
   </rooms>
   <help>

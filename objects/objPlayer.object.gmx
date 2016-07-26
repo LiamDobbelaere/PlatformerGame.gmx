@@ -85,7 +85,7 @@ controls_moveleft = global.key_left;
 controls_moveright = global.key_right;
 controls_upaction = global.key_up;
 controls_downaction = global.key_down;
-controls_kick = ord("F");
+controls_kick = global.key_kick;
 </string>
           </argument>
         </arguments>

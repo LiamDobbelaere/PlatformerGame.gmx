@@ -1,9 +1,5 @@
 if (instance_exists(objMusic))
 {
-    with (objMusic) instance_destroy();
+    //objMusic.clip = argument0;
+    objMusic.alarm[0] = 1;
 }
-
-var newSong = instance_create(0, 0, objMusic);
-newSong.clip = argument0;
-//newSong.fade = argument1;
-

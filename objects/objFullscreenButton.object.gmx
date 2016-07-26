@@ -108,6 +108,7 @@ image_single = 0;
        window_set_fullscreen(true);
        }
     }
+    
 </string>
           </argument>
         </arguments>

@@ -77,7 +77,13 @@ window_set_fullscreen(true);
     view_wport[0] = new_width;
     view_hport[0] = new_height;
 
-    if (room == rmTesting) surface_resize(application_surface, new_width, new_height);
+    if (string_pos("menu", string_lower(room_get_name(room))) != 0)
+    {
+        room_width = new_width;
+        room_height = new_height;
+    }
+    
+    surface_resize(application_surface, new_width, new_height);
     
     window_width = window_get_width();
     window_height = window_get_height();
