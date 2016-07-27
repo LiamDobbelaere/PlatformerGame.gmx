@@ -26,9 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize
-doResize();
 
+doResize();
 randomize();
+instance_create(0, 0, objPause);
 
 switching_ready = false;
 phy_fixed_rotation = true; //Prevents object from rotating due to physics
@@ -41,6 +42,7 @@ can_jump = true;
 can_walljump = false;
 can_walljump_always = false;
 has_walljumped = false;
+last_walljump_was_right = false;
 
 is_sliding = false;
 slide_potential = 0;
@@ -56,15 +58,16 @@ action_kick = false;
 
 animation_counter = 0;
 
+global.always_switch = false;
 arriving = false;
-/*part_emitter = instance_create(x, y, objParticleEmitter);
-part_emitter.target_object = objPlayer;
-part_emitter.active = false;
-*/
+isInSwitchZone = false;
+canSwitchHere = false;
+
+debug_isFrictionBraking = false;
 
 ///Prevents constant movement when controller is plugged in. Decimal can be altered.
 
-gamepad_set_axis_deadzone(0,0.3);
+gamepad_set_axis_deadzone(0, 0.3);
 </string>
           </argument>
         </arguments>
@@ -142,7 +145,7 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Switching init
+            <string>///Switching arrival
 
 if (global.switchreality)
 {    
@@ -158,13 +161,14 @@ if (global.switchreality)
     
     global.switchreality = false;
     
-    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
     emitter.emit_rate = room_speed / 32;
     emitter.radius = 16;
     emitter.target_sprite = sprSwitch;
     emitter.max_emits = 8;
     emitter.blend_color = c_white;
-    emitter.active = true;
+    emitter.active = true;*/
+    
     arriving = true;
     
     alarm[1] = room_speed / 2;
@@ -194,7 +198,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Sliding particles/audio
+            <string>///Sliding particles/sfx init
 
 slide_loop = audio_play_sound(sndSlideLoop, 0, true);
 audio_sound_gain(slide_loop, 0, 0);
@@ -208,7 +212,6 @@ spark_emitter.constrain_x = true;
 spark_emitter.target_sprite = sprSpark;
 spark_emitter.alternate_sides = true;
 spark_emitter.active = false;
-
 </string>
           </argument>
         </arguments>
@@ -231,7 +234,9 @@ spark_emitter.active = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>physics_pause_enable(true);
+            <string>///Physics pause fix for switch arrival
+
+physics_pause_enable(true);
 </string>
           </argument>
         </arguments>
@@ -254,7 +259,9 @@ spark_emitter.active = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switching_ready = true;
+            <string>///After switch arrival
+
+switching_ready = true;
 arriving = false;
 with (objSwitchOverlay) instance_destroy();
 physics_pause_enable(false);
@@ -281,7 +288,9 @@ physics_pause_enable(false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(global.linked_room);
+            <string>///On reality switch
+
+room_goto(global.linked_room);
 </string>
           </argument>
         </arguments>
@@ -304,13 +313,13 @@ physics_pause_enable(false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Controls 
-
-//Pause Event
+            <string>///Controls
+//The order in which the controls appear in this script is very important
 
 velocity_x_divider = 1;
 
-if ( keyboard_check_direct (controls_downaction) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
+//Ducking/sliding
+if ( (keyboard_check_direct(controls_downaction) || gamepad_axis_value(0, gp_axislv) &gt; 0) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
 {
     is_crawling = true;
     
@@ -332,33 +341,33 @@ else
     is_crawling = false;
 }
 
-if ( keyboard_check_direct(controls_moveright) &amp;&amp; phy_linear_velocity_x &lt; max_velocity_x / velocity_x_divider )
+//Moving right
+if ( (keyboard_check_direct(controls_moveright) || gamepad_axis_value(0, gp_axislh) &gt; 0) &amp;&amp; phy_linear_velocity_x &lt; max_velocity_x / velocity_x_divider )
 {
     physics_apply_force(x, y, (phy_mass * move_multiplier), 0);
 }
 
-if ( keyboard_check_direct(controls_moveleft) &amp;&amp; phy_linear_velocity_x &gt; -max_velocity_x / velocity_x_divider )
+//Moving left
+if ( (keyboard_check_direct(controls_moveleft) || gamepad_axis_value(0, gp_axislh) &lt; 0) &amp;&amp; phy_linear_velocity_x &gt; -max_velocity_x / velocity_x_divider )
 {
     physics_apply_force(x, y, -(phy_mass * move_multiplier), 0);
 }
 
-/*if ( place_free(x, y + sprite_height / 2 - 6) &amp;&amp; phy_linear_velocity_y &gt; 0 )
-{
-    jump_potential = 0;
-}*/
-
-if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, objDynamic) ) {
+if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, objDynamic) ) { //Is there no ceiling above our puny heads?
     if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) )
     {
         has_walljumped = false;
     }
     
-    if ( keyboard_check_pressed(controls_upaction) &amp;&amp; !keyboard_check_direct(controls_kick) &amp;&amp; ((can_jump 
+    if ( (keyboard_check_pressed(controls_upaction) || gamepad_button_check_pressed(0, gp_face1)) &amp;&amp; (!keyboard_check_direct(controls_kick) &amp;&amp; !gamepad_button_check(0, gp_face2)) &amp;&amp; ((can_jump 
          &amp;&amp; (place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic)) &amp;&amp; abs(phy_linear_velocity_y) &lt; 1 * jump_multiplier/2)
          || (can_walljump &amp;&amp; !has_walljumped)) )
     {   
         if (can_walljump &amp;&amp; !can_walljump_always) has_walljumped = true;
     
+        if (place_meeting(x + 2, y, objStatic)) last_walljump_was_right = true;
+        else last_walljump_was_right = false;
+        
         audio_play_sound(sndJump, 0, false);
         physics_apply_force(x, y, 0, -phy_mass * jump_multiplier );
         
@@ -367,7 +376,7 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         can_jump = false;
     }
     
-    if ( keyboard_check_direct(controls_upaction) &amp;&amp; phy_linear_velocity_y &lt; -phy_mass * jump_multiplier/2 
+    if ( (keyboard_check_direct(controls_upaction) || gamepad_button_check(0, gp_face1)) &amp;&amp; phy_linear_velocity_y &lt; -phy_mass * jump_multiplier/2 
          &amp;&amp; !place_meeting(x, y + sprite_height / 2 + 5, objStatic) 
          &amp;&amp; !place_meeting(x, y + sprite_height / 2 + 5, objDynamic)
          &amp;&amp; jump_potential &gt; 0 )
@@ -377,24 +386,20 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         physics_apply_force(x, y, 0, -phy_mass * jump_potential_multiplier );
     }
     
-    if ( (place_meeting(x - 2, y, objStatic) || place_meeting(x + 2, y, objStatic))
-             &amp;&amp; phy_linear_velocity_y &gt; 0 )
+    if ( (place_meeting(x - 2, y, objStatic) || place_meeting(x + 2, y, objStatic)) //Is there a wall to our left or our right?
+             &amp;&amp; phy_linear_velocity_y &gt; 0 &amp;&amp; slide_potential &gt; 0 )
     {
-        if (keyboard_check_direct(controls_moveright) || keyboard_check_direct(controls_moveleft))
+        var is_wall_left = place_meeting(x + 2, y, objStatic);
+        if (is_wall_left != last_walljump_was_right) has_walljumped = false;
+        
+        if (phy_linear_velocity_y &gt; 30 &amp;&amp; slide_potential &gt; 0) 
         {
-            if (phy_linear_velocity_y &gt; 30 &amp;&amp; slide_potential &gt; 0) 
-            {
-                phy_linear_velocity_y -= 10;
-            }
-            
-            is_sliding = true;
-            can_walljump = true;
-            slide_potential -= 1;
+            phy_linear_velocity_y -= 10;
         }
-        else
-        {
-            can_walljump = false;
-        }
+        
+        is_sliding = true;
+        can_walljump = true;
+        slide_potential -= 1;
     }
     else
     {
@@ -402,7 +407,7 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         can_walljump = false;
     }
     
-    if ( keyboard_check_released(controls_kick) &amp;&amp; abs(phy_linear_velocity_x) &lt; 80 &amp;&amp; action_kick == false)
+    if ( (keyboard_check_released(controls_kick) || gamepad_button_check_released(0, gp_face2)) &amp;&amp; abs(phy_linear_velocity_x) &lt; 80 &amp;&amp; action_kick == false)
     {
         audio_play_sound(sndKick, 0, false);
     
@@ -410,7 +415,7 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         var xImpulse = 1;
         var yImpulse = 1;
         
-        if (keyboard_check_direct(controls_upaction))
+        if (keyboard_check_direct(controls_upaction) || gamepad_axis_value(0, gp_axislv) &lt; 0)
         {
             xImpulse = 0.5;
             yImpulse = 3;
@@ -440,75 +445,6 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         
         action_kick = true
     }
-//wall jumping
-//can_walljump = false;
-if(has_walljumped = true &amp;&amp; !instance_exists(objWallJumpBlock)){instance_create(x,y,objWallJumpBlock)}
-if (place_meeting(x,y,objWallJumpBlock))
-{
-has_walljumped = true
-}
-else
-{
-has_walljumped = false
-}
-
-
-
-
-
-
-
-   
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Reality switching controls
-
-if (keyboard_check_pressed(global.key_switch) &amp;&amp; global.switchreality = false &amp;&amp; switching_ready) {
-    global.switchreality = true;    
-    global.target_x = phy_position_x;
-    global.target_y = phy_position_y;
-    global.target_xvel = phy_linear_velocity_x;
-    global.target_yvel = phy_linear_velocity_y;
-    global.target_sprindex = sprite_index;
-    
-    //background_colour = c_white;
-    //image_blend = c_black;
-    instance_create(0, 0, objSwitchOverlay);
-    
-    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
-    emitter.emit_rate = room_speed / 32;
-    emitter.blend_color = c_white;
-    emitter.radius = 16;
-    emitter.target_sprite = sprSwitchReverse;
-    emitter.active = true;*/
-    
-    audio_sound_gain(slide_loop, 0, 250);
-    audio_play_sound(sndSwitch, 0, false);
-    
-    physics_pause_enable(true);
-    sprite_index = sprPlayerSwitch;
-    image_speed = (image_number - 1) / (room_speed / 2);
-
-    alarm[0] = room_speed / 2;
 }
 </string>
           </argument>
@@ -574,6 +510,7 @@ else if ( !place_meeting(x, y + 2, objStatic) &amp;&amp; !place_meeting(x, y + 2
     {
         spark_emitter.active = false;
         audio_sound_gain(slide_loop, 0, 0);
+        gamepad_set_vibration(0, 0, 0);
         sprite_index = sprPlayerAir;    
     }
 }
@@ -606,6 +543,120 @@ else
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Switch zones
+
+if (isInSwitchZone &amp;&amp; !place_meeting(x, y, objSwitchZone))
+{
+    isInSwitchZone = false;
+    if (global.always_switch)
+    {
+        audio_play_sound(sndSwitchReady, 0, false);
+    }
+    else
+    {
+        audio_play_sound(sndSwitchBlocked, 0, false);
+    }   
+}
+
+if (!isInSwitchZone &amp;&amp; place_meeting(x, y, objSwitchZone))
+{
+    isInSwitchZone = true;
+    if (global.always_switch)
+    {
+        audio_play_sound(sndSwitchBlocked, 0, false);
+    }
+    else
+    {
+        audio_play_sound(sndSwitchReady, 0, false);
+    }    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reality switching controls
+
+canSwitchHere = false;
+
+if (global.always_switch)
+{
+    if (!isInSwitchZone) canSwitchHere = true;
+}
+else
+{
+    if (isInSwitchZone) canSwitchHere = true;
+}
+
+if ((keyboard_check_pressed(global.key_switch) || gamepad_button_check(0, gp_shoulderr)) 
+    &amp;&amp; global.switchreality = false 
+    &amp;&amp; switching_ready 
+    &amp;&amp; canSwitchHere) {
+        
+
+
+    global.switchreality = true;    
+    global.target_x = phy_position_x;
+    global.target_y = phy_position_y;
+    global.target_xvel = phy_linear_velocity_x;
+    global.target_yvel = phy_linear_velocity_y;
+    global.target_sprindex = sprite_index;
+    
+    //background_colour = c_white;
+    //image_blend = c_black;
+    instance_create(0, 0, objSwitchOverlay);
+    
+    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    emitter.emit_rate = room_speed / 32;
+    emitter.blend_color = c_white;
+    emitter.radius = 16;
+    emitter.target_sprite = sprSwitchReverse;
+    emitter.active = true;*/
+    
+    audio_sound_gain(slide_loop, 0, 250);
+    audio_play_sound(sndSwitch, 0, false);
+    
+    physics_pause_enable(true);
+    sprite_index = sprPlayerSwitch;
+    image_speed = (image_number - 1) / (room_speed / 2);
+
+    alarm[0] = room_speed / 2;
+}
 </string>
           </argument>
         </arguments>
@@ -674,9 +725,18 @@ phy_speed_y = -3
             <kind>1</kind>
             <string>///Physics movement modifiers
 
-if (!keyboard_check_direct(controls_moveright) &amp;&amp; !keyboard_check_direct(controls_moveleft) &amp;&amp; !keyboard_check_direct(controls_downaction))
+if (!keyboard_check_direct(controls_moveright) 
+    &amp;&amp; !keyboard_check_direct(controls_moveleft) 
+    &amp;&amp; !keyboard_check_direct(controls_downaction)
+    &amp;&amp; gamepad_axis_value(0, gp_axislh) == 0
+    &amp;&amp; gamepad_axis_value(0, gp_axislv) &lt;= 0)
 {
+    debug_isFrictionBraking = true;
     phy_linear_velocity_x = phy_linear_velocity_x * move_slowdown_factor;
+}
+else
+{
+    debug_isFrictionBraking = false;
 }
 </string>
           </argument>
@@ -745,7 +805,9 @@ spark_emitter.y = phy_position_y + 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (phy_linear_velocity_y &gt;= 0) can_jump = true;
+            <string>///Jump reset
+
+if (phy_linear_velocity_y &gt;= 0) can_jump = true;
 </string>
           </argument>
         </arguments>
@@ -788,7 +850,30 @@ spark_emitter.y = phy_position_y + 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (phy_linear_velocity_y &gt;= 0) can_jump = true;
+            <string>///Jump reset
+
+if (phy_linear_velocity_y &gt;= 0) can_jump = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Slide particles/sfx
 
 if ( abs(phy_linear_velocity_x) &gt; 64 &amp;&amp; is_crawling )
 {
@@ -797,6 +882,10 @@ if ( abs(phy_linear_velocity_x) &gt; 64 &amp;&amp; is_crawling )
         spark_emitter.active = true;
         audio_sound_gain(slide_loop, 1, 250);
     }
+    
+    var vibration = min((abs(phy_linear_velocity_x) - 64) / (max_velocity_x - 64), 1);
+    
+    gamepad_set_vibration(0, vibration, vibration);
 }
 else
 {
@@ -805,6 +894,8 @@ else
         spark_emitter.active = false;
         audio_sound_gain(slide_loop, 0, 250);
     }
+    
+    gamepad_set_vibration(0, 0, 0);
 }
 </string>
           </argument>
@@ -828,7 +919,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_restart();
+            <string>///Basic death
+
+room_restart();
 </string>
           </argument>
         </arguments>
@@ -851,8 +944,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///Drawing code
 
+draw_self();
 
 if (global.switchreality || arriving)
 {
@@ -867,12 +961,58 @@ if (global.switchreality || arriving)
     }
 }
 
-/*draw_set_color(c_lime);
-draw_point(x, y + sprite_height / 2);
+if (canSwitchHere &amp;&amp; !global.switchreality)
+{
+    draw_sprite(sprSwitchReady, 0, view_xview[0] + view_wview[0] - 48, view_yview[0] + view_hview[0] - 48);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Debug mode
 
-draw_text(x, y, phy_linear_velocity_y);*/
-//flag = phy_debug_render_coms | phy_debug_render_shapes
-//physics_world_draw_debug(flag);
+if (debug_mode)
+{
+    draw_set_color(c_black);
+    draw_set_alpha(0.5);
+    draw_rectangle(view_xview[0], view_yview[0], 
+                   view_xview[0] + 5 * 32, view_yview[0] + 7 * 10, false);
+    draw_set_alpha(1);
+    draw_set_font(global.font_tiny)
+    draw_set_color(c_lime);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_text(view_xview[0], view_yview[0], "LIN. VEL. X: " + string(phy_linear_velocity_x));
+    draw_text(view_xview[0], view_yview[0] + 8, "LIN. VEL. Y: " + string(phy_linear_velocity_y));
+    draw_text(view_xview[0], view_yview[0] + 16, "CAN JUMP: " + string(can_jump));
+    draw_text(view_xview[0], view_yview[0] + 24, "CAN W.JUMP: " + string(can_walljump));
+    draw_text(view_xview[0], view_yview[0] + 32, "HAS W.JUMPED: " + string(has_walljumped));
+    draw_text(view_xview[0], view_yview[0] + 40, "W.SLIDING: " + string(is_sliding));
+    draw_text(view_xview[0], view_yview[0] + 48, "CRAWLING: " + string(is_crawling));    
+    draw_text(view_xview[0], view_yview[0] + 56, "FRIC.BRAKE: " + string(debug_isFrictionBraking));    
+    draw_text(view_xview[0], view_yview[0] + 64, "LAST WJ.RIGHT: " + string(last_walljump_was_right));    
+    
+    draw_set_color(c_black);
+                   
+    flag = phy_debug_render_coms | phy_debug_render_shapes
+    physics_world_draw_debug(flag);
+}
 </string>
           </argument>
         </arguments>
@@ -881,7 +1021,7 @@ draw_text(x, y, phy_linear_velocity_y);*/
   </events>
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>2</PhysicsObjectShape>
+  <PhysicsObjectShape>1</PhysicsObjectShape>
   <PhysicsObjectDensity>2</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
@@ -891,11 +1031,9 @@ draw_text(x, y, phy_linear_velocity_y);*/
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>20,20</point>
-    <point>22,22</point>
-    <point>18,32</point>
-    <point>14,32</point>
-    <point>10,30</point>
-    <point>10,22</point>
+    <point>10,20</point>
+    <point>22,20</point>
+    <point>22,32</point>
+    <point>10,32</point>
   </PhysicsShapePoints>
 </object>

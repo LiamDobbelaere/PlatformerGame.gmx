@@ -14,6 +14,8 @@
     <sound>sound\sndSwitch</sound>
     <sound>sound\sndSwitchOut</sound>
     <sound>sound\sndSlideLoop</sound>
+    <sound>sound\sndSwitchReady</sound>
+    <sound>sound\sndSwitchBlocked</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="player">
@@ -29,6 +31,7 @@
       <sprite>sprites\sprPlayerSwitchBeam</sprite>
     </sprites>
     <sprite>sprites\sprFloor</sprite>
+    <sprite>sprites\sprSwitchZone</sprite>
     <sprite>sprites\sprPushboxMetal</sprite>
     <sprite>sprites\sprBashableDoor</sprite>
     <sprite>sprites\sprGib</sprite>
@@ -40,8 +43,9 @@
     <sprite>sprites\sprSwitch</sprite>
     <sprite>sprites\sprSwitchReverse</sprite>
     <sprite>sprites\sprGuiFont</sprite>
+    <sprite>sprites\sprGuiFontTiny</sprite>
     <sprite>sprites\sprSpark</sprite>
-    <sprite>sprites\sprWallJumpBlock</sprite>
+    <sprite>sprites\sprSwitchReady</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -65,6 +69,7 @@
     <object>objects\objStatic</object>
     <object>objects\objDynamic</object>
     <object>objects\objFloor</object>
+    <object>objects\objSwitchZone</object>
     <object>objects\objPushboxMetal</object>
     <object>objects\objBashableDoor</object>
     <object>objects\objMusic</object>
@@ -83,7 +88,6 @@
     <object>objects\objKeyController</object>
     <object>objects\objParticle</object>
     <object>objects\objSwitchOverlay</object>
-    <object>objects\objWallJumpBlock</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
@@ -93,6 +97,7 @@
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmLevelOneB</room>
     <room>rooms\rmTesting</room>
+    <room>rooms\rmMovementTest</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

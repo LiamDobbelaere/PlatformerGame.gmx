@@ -86,14 +86,18 @@ if (pause)
             <string>if (pause = 0)
 {
     pause = 1;
+    with (objPlayer) audio_sound_gain(slide_loop, 0, 0);
     instance_deactivate_all(true);
+    physics_pause_enable(true);
     //instance_create(view_xview[0] + view_wview[0]/2,view_yview[0] + view_hview[0]/2 + 32,objButtonGotoMenu);
     instance_create(0, 0, objMenuPause);
+    gamepad_set_vibration(0, 0, 0);
 }
 else
 {
     pause = 0;
     instance_activate_all();
+    physics_pause_enable(false); 
     //instance_deactivate_object(objButtonGotoMenu);
     with (objMenuPause) instance_destroy();
 }

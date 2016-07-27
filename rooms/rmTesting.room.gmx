@@ -3,14 +3,15 @@
   <caption></caption>
   <width>1536</width>
   <height>768</height>
-  <vsnap>16</vsnap>
-  <hsnap>16</hsnap>
+  <vsnap>32</vsnap>
+  <hsnap>32</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
   <colour>7361861</colour>
   <showcolour>-1</showcolour>
-  <code>global.linked_room = rmTesting;
+  <code>global.linked_room = rmMovementTest;
+global.always_switch = true;
 playMusic(sndTech);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
@@ -72,10 +73,8 @@ playMusic(sndTech);</code>
     <instance objName="objBashableDoor" x="640" y="512" name="inst_D91C7982" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="576" y="256" name="inst_AE8DBFFF" locked="0" code="" scaleX="1" scaleY="4.09677410125732" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="608" y="288" name="inst_D9184D6A" locked="0" code="" scaleX="2" scaleY="7" colour="4294967295" rotation="0"/>
-    <instance objName="objParticleEmitter" x="48" y="0" name="inst_A0684F3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="592" y="512" name="inst_CA5A9A11" locked="0" code="" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="672" y="496" name="inst_F5E8F461" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
-    <instance objName="objPause" x="16" y="0" name="inst_AE7C9571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="736" y="640" name="inst_D5FC7DF0" locked="0" code="" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="864" y="672" name="inst_D3E6F9CC" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="928" y="672" name="inst_49C5F4F1" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
@@ -98,6 +97,7 @@ playMusic(sndTech);</code>
     <instance objName="objPlatformMovingSwitch" x="448" y="544" name="inst_C6917325" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlayer" x="48" y="720" name="inst_3F56D86F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="80" y="544" name="inst_91DC04FA" locked="0" code="" scaleX="0.5" scaleY="5" colour="4294967295" rotation="0"/>
+    <instance objName="objSwitchZone" x="736" y="576" name="inst_EFE4ABC7" locked="0" code="" scaleX="23" scaleY="6" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgTileGrounds" x="32" y="736" w="32" h="32" xo="64" yo="0" id="10000002" name="inst_3CCC2709" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

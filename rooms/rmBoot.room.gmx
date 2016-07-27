@@ -33,6 +33,7 @@ else
 }
 
 global.font = font_add_sprite(sprGuiFont, ord("!"), false, 2);
+global.font_tiny = font_add_sprite(sprGuiFontTiny, ord("!"), false, 1);
 global.switchreality = false;
 
 room_goto_next();
