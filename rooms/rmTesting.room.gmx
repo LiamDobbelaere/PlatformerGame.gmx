@@ -96,7 +96,8 @@ playMusic(sndTech);</code>
     <instance objName="objPlatformMovingHor" x="192" y="544" name="inst_E1548041" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatformMovingSwitch" x="32" y="544" name="inst_90148AC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatformMovingSwitch" x="448" y="544" name="inst_C6917325" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPlayer" x="80" y="704" name="inst_3F56D86F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPlayer" x="48" y="720" name="inst_3F56D86F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="80" y="544" name="inst_91DC04FA" locked="0" code="" scaleX="0.5" scaleY="5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgTileGrounds" x="32" y="736" w="32" h="32" xo="64" yo="0" id="10000002" name="inst_3CCC2709" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -318,6 +319,16 @@ playMusic(sndTech);</code>
     <tile bgName="bgStoneFloor" x="1216" y="384" w="32" h="32" xo="0" yo="0" id="10000483" name="inst_6E04559D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="1248" y="352" w="32" h="32" xo="0" yo="0" id="10000484" name="inst_D31F0C1E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="864" y="672" w="32" h="32" xo="64" yo="0" id="10000485" name="inst_563FDABB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="544" w="16" h="16" xo="96" yo="96" id="10000557" name="inst_A8C9DBAC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="560" w="16" h="16" xo="96" yo="96" id="10000558" name="inst_34EE736C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="576" w="16" h="16" xo="96" yo="96" id="10000559" name="inst_A4D57662" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="592" w="16" h="16" xo="96" yo="96" id="10000560" name="inst_300E4CB0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="608" w="16" h="16" xo="96" yo="96" id="10000561" name="inst_3F92BBDA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="624" w="16" h="16" xo="96" yo="96" id="10000562" name="inst_8A079A0C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="640" w="16" h="16" xo="96" yo="96" id="10000563" name="inst_89D8A641" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="656" w="16" h="16" xo="96" yo="96" id="10000564" name="inst_CDDE37F2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="672" w="16" h="16" xo="96" yo="96" id="10000565" name="inst_AEEDB5B7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="80" y="688" w="16" h="16" xo="96" yo="96" id="10000566" name="inst_9A9BDE4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

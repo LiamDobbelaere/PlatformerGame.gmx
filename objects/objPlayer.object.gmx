@@ -304,172 +304,7 @@ physics_pause_enable(false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Controls
-/*
-velocity_x_divider = 1;
-
-if ( keyboard_check_direct (controls_downaction) || (place_meeting(x, y - 8, objStatic) &amp;&amp; can_jump) )
-{
-    is_crawling = true;
-    
-    if (fixture_standing_bound != noone)
-    {
-        physics_remove_fixture(self, fixture_standing_bound);
-        fixture_standing_bound = noone;
-    }
-    
-    velocity_x_divider = 4;
-}
-else
-{
-    if (fixture_standing_bound == noone)
-    {
-        fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
-    }
-    
-    is_crawling = false;
-}
-
-if ( keyboard_check_direct(controls_moveright) &amp;&amp; phy_linear_velocity_x &lt; max_velocity_x / velocity_x_divider )
-{
-    physics_apply_force(x, y, (phy_mass * move_multiplier), 0);
-}
-
-if ( keyboard_check_direct(controls_moveleft) &amp;&amp; phy_linear_velocity_x &gt; -max_velocity_x / velocity_x_divider )
-{
-    physics_apply_force(x, y, -(phy_mass * move_multiplier), 0);
-}
-
-/*if ( place_free(x, y + sprite_height / 2 - 6) &amp;&amp; phy_linear_velocity_y &gt; 0 )
-{
-    jump_potential = 0;
-}*/
-
-if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, objDynamic) ) {
-    if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) ){
-    {
-        has_walljumped = false;
-    }
-    
-    if ( keyboard_check_pressed(controls_upaction) &amp;&amp; !keyboard_check_direct(controls_kick) &amp;&amp; ((can_jump 
-         &amp;&amp; (place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic)) &amp;&amp; abs(phy_linear_velocity_y) &lt; 1 * jump_multiplier/2)
-         || (can_walljump &amp;&amp; !has_walljumped)) )
-    {   
-        if (can_walljump &amp;&amp; !can_walljump_always) has_walljumped = true;
-    
-        audio_play_sound(sndJump, 0, false);
-        physics_apply_force(x, y, 0, -phy_mass * jump_multiplier );
-        
-        jump_potential = jump_max_potential;
-        slide_potential = slide_max_potential;
-        can_jump = false;
-    }
-    
-    if ( keyboard_check_direct(controls_upaction) &amp;&amp; phy_linear_velocity_y &lt; -phy_mass * jump_multiplier/2 
-         &amp;&amp; !place_meeting(x, y + sprite_height / 2 + 5, objStatic) 
-         &amp;&amp; !place_meeting(x, y + sprite_height / 2 + 5, objDynamic)
-         &amp;&amp; jump_potential &gt; 0 )
-    {
-        jump_potential -= 1;
-        
-        physics_apply_force(x, y, 0, -phy_mass * jump_potential_multiplier );
-    }
-    }
-    }
-    
-    if ( (place_meeting(x - 2, y, objStatic) || place_meeting(x + 2, y, objStatic))
-             &amp;&amp; phy_linear_velocity_y &gt; 0 )
-    {
-        if (keyboard_check_direct(controls_moveright) || keyboard_check_direct(controls_moveleft))
-        {
-            if (phy_linear_velocity_y &gt; 30 &amp;&amp; slide_potential &gt; 0) 
-            {
-                phy_linear_velocity_y -= 10;
-            }
-            
-            is_sliding = true;
-            can_walljump = true;
-            slide_potential -= 1;
-        }
-        else
-        {
-            can_walljump = false;
-        }
-    }
-    else
-    {
-        is_sliding = false;
-        can_walljump = false;
-    }
-    if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, objDynamic) ) {
-    if ( place_meeting(x, y + 2, objStatic) || place_meeting(x, y + 2, objDynamic) ){
-    if ( keyboard_check_released(controls_kick) &amp;&amp; abs(phy_linear_velocity_x) &lt; 80 &amp;&amp; action_kick == false)
-    {
-        audio_play_sound(sndKick, 0, false);
-    
-        var nearestBox = instance_nearest(x, y, objPushboxMetal);
-        var xImpulse = 1;
-        var yImpulse = 1;
-        
-        if (keyboard_check_direct(controls_upaction))
-        {
-            xImpulse = 0.5;
-            yImpulse = 3;
-        }
-        
-        if ( nearestBox != noone)
-        {
-            if ( point_distance(nearestBox.x, nearestBox.y, objPlayer.x, objPlayer.y) &lt;= 28 
-                 &amp;&amp; !action_kick )
-            {
-                if (x &lt;= nearestBox.x)
-                {
-                    if (image_xscale == 1)
-                    {
-                        with (nearestBox) physics_apply_impulse(x, y, xImpulse, -yImpulse);    
-                    }
-                }
-                else
-                {
-                    if (image_xscale == -1)
-                    {
-                        with (nearestBox) physics_apply_impulse(x, y, -xImpulse, -yImpulse);
-                    }
-                }
-            }
-        }
-        
-        action_kick = true
-    }
-  }
-}
-
-key_left = -(keyboard_check(vk_left) || (gamepad_axis_value(0,gp_axislh) &lt; 0));
-key_right = keyboard_check(vk_right) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
-key_up = keyboard_check(vk_up) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
-key_down = keyboard_check(vk_down) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
-key_kick = keyboard_check_pressed(ord("F")) || (gamepad_button_check_pressed(0,gp_face1));
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Controls OLD
+            <string>///Controls 
 
 //Pause Event
 
@@ -605,6 +440,25 @@ if ( !place_meeting(x, y - 8, objStatic) &amp;&amp; !place_meeting(x, y - 8, obj
         
         action_kick = true
     }
+//wall jumping
+//can_walljump = false;
+if(has_walljumped = true &amp;&amp; !instance_exists(objWallJumpBlock)){instance_create(x,y,objWallJumpBlock)}
+if (place_meeting(x,y,objWallJumpBlock))
+{
+has_walljumped = true
+}
+else
+{
+has_walljumped = false
+}
+
+
+
+
+
+
+
+   
 }
 </string>
           </argument>

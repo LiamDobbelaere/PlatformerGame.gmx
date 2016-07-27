@@ -41,6 +41,7 @@
     <sprite>sprites\sprSwitchReverse</sprite>
     <sprite>sprites\sprGuiFont</sprite>
     <sprite>sprites\sprSpark</sprite>
+    <sprite>sprites\sprWallJumpBlock</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
@@ -82,6 +83,7 @@
     <object>objects\objKeyController</object>
     <object>objects\objParticle</object>
     <object>objects\objSwitchOverlay</object>
+    <object>objects\objWallJumpBlock</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
