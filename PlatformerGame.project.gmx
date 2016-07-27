@@ -25,6 +25,8 @@
       <sprite>sprites\sprPlayerSlide</sprite>
       <sprite>sprites\sprPlayerCrawl</sprite>
       <sprite>sprites\sprPlayerFloorslide</sprite>
+      <sprite>sprites\sprPlayerSwitch</sprite>
+      <sprite>sprites\sprPlayerSwitchBeam</sprite>
     </sprites>
     <sprite>sprites\sprFloor</sprite>
     <sprite>sprites\sprPushboxMetal</sprite>

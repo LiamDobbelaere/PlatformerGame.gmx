@@ -197,7 +197,7 @@ audio_sound_gain(slide_loop, 0, 0);
 spark_emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
 
 spark_emitter.emit_rate = room_speed / 16;
-spark_emitter.blend_color = c_yellow;
+spark_emitter.blend_color = c_dkgray;
 spark_emitter.radius = 8;
 spark_emitter.constrain_x = true;
 spark_emitter.target_sprite = sprSpark;
@@ -609,17 +609,19 @@ if (keyboard_check_pressed(global.key_switch) &amp;&amp; global.switchreality = 
     //image_blend = c_black;
     instance_create(0, 0, objSwitchOverlay);
     
-    var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
     emitter.emit_rate = room_speed / 32;
     emitter.blend_color = c_white;
     emitter.radius = 16;
     emitter.target_sprite = sprSwitchReverse;
-    emitter.active = true;
+    emitter.active = true;*/
     
+    audio_sound_gain(slide_loop, 0, 250);
     audio_play_sound(sndSwitch, 0, false);
     
     physics_pause_enable(true);
-    image_speed = 0;
+    sprite_index = sprPlayerSwitch;
+    image_speed = (image_number - 1) / (room_speed / 2);
     
     alarm[0] = room_speed / 2;
 }
@@ -960,6 +962,21 @@ else
           <argument>
             <kind>1</kind>
             <string>draw_self();
+
+
+if (global.switchreality)
+{
+    var imageNum = image_index - 6;
+    
+    if (imageNum &gt;= 0)
+    {
+        for (i = 0; i &lt; view_hview / 32; i++)
+        {
+            draw_sprite(sprPlayerSwitchBeam, imageNum, phy_position_x, phy_position_y - (32 * (i + 1)));
+        }    
+    }
+}
+
 /*draw_set_color(c_lime);
 draw_point(x, y + sprite_height / 2);
 
