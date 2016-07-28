@@ -59,7 +59,7 @@ spot = false
             <string>//Pause event
 
 ///AI Logic
-
+if(instance_exists(objPlayer)){
 if (instance_exists(objPlayer)) 
 { 
     if (distance_to_point(objPlayer.x, objPlayer.y) &lt;= 256 
@@ -98,7 +98,7 @@ if (instance_exists(objPlayer))
     
 
 }
-
+}
 
 </string>
           </argument>
@@ -121,6 +121,7 @@ if (instance_exists(objPlayer))
           <argument>
             <kind>1</kind>
             <string>///get hit / hit back
+if(instance_exists(objPlayer)){
 if ( place_meeting ( x, y, objPlayer ) )
 {
 
@@ -139,17 +140,22 @@ if ( objPlayer.sprite_index = sprPlayerKick )
 
 
 
-
+if (phy_speed_x &gt;=-.5 &amp;&amp; phy_speed_x &lt;=.5 )
+{ 
+objPlayer.dead = true
+}
 
 if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
 or ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
 {
 sprite_index = sprPlayerKick 
 if ( image_index &gt;=  4 ){
-room_restart()
+objPlayer.dead = true
 }
 }
 }
+}
+
 </string>
           </argument>
         </arguments>
@@ -198,6 +204,7 @@ else
     sprite_index = sprPlayerStanding;
     image_speed = 0.05;
 }
+if(instance_exists(objPlayer)){
 if (distance_to_point(objPlayer.x, objPlayer.y) &lt;= 10
         &amp;&amp; !collision_line(x, y, objPlayer.x, objPlayer.y, objFloor, false, true)){ 
 if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
@@ -205,6 +212,7 @@ or ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
 and ( phy_speed_x &lt;= 1 )
 {
 sprite_index = sprPlayerKick 
+}
 }
 }
 </string>

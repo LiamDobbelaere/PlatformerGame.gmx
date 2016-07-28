@@ -46,11 +46,13 @@
     <sprite>sprites\sprGuiFontTiny</sprite>
     <sprite>sprites\sprSpark</sprite>
     <sprite>sprites\sprSwitchReady</sprite>
+    <sprite>sprites\sprTrapSpike</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileGrounds</background>
     <background>background\bgStoneFloor</background>
     <background>background\bgStoneFloorMossy</background>
+    <background>background\bgShade</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -88,6 +90,7 @@
     <object>objects\objKeyController</object>
     <object>objects\objParticle</object>
     <object>objects\objSwitchOverlay</object>
+    <object>objects\objTrapSpike</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
