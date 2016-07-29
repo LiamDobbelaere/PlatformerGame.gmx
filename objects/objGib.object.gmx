@@ -51,7 +51,7 @@ alarm[0] = room_speed * 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///player death
+            <string>///Player death
 if !( instance_exists ( objPlayer ))
 {
 room_restart()

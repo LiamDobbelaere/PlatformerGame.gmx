@@ -53,6 +53,8 @@
     <background>background\bgStoneFloor</background>
     <background>background\bgStoneFloorMossy</background>
     <background>background\bgShade</background>
+    <background>background\bgCityBack</background>
+    <background>background\bgCityFront</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -84,6 +86,7 @@
     <object>objects\objPlatformMovingSwitch</object>
     <object>objects\objMenuParent</object>
     <object>objects\objMenuMain</object>
+    <object>objects\objMenuMultiplayer</object>
     <object>objects\objMenuPause</object>
     <object>objects\objMenuOptions</object>
     <object>objects\objMenuControls</object>
@@ -91,9 +94,13 @@
     <object>objects\objParticle</object>
     <object>objects\objSwitchOverlay</object>
     <object>objects\objTrapSpike</object>
+    <object>objects\objMultiplayerManager</object>
+    <object>objects\objGameVersion</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
+    <room>rooms\rmMultiplayerMenu</room>
+    <room>rooms\rmMultiplayer</room>
     <room>rooms\rmMainMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
