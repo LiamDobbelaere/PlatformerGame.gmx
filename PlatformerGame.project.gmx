@@ -64,6 +64,8 @@
     <script>scripts\updateControlsList.gml</script>
     <script>scripts\doResize.gml</script>
     <script>scripts\makeKeyBuffer.gml</script>
+    <script>scripts\makeHelloBuffer.gml</script>
+    <script>scripts\netKeyPressRelease.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
@@ -98,6 +100,7 @@
     <object>objects\objMultiplayerManager</object>
     <object>objects\objGameVersion</object>
     <object>objects\objClient</object>
+    <object>objects\objClientView</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>

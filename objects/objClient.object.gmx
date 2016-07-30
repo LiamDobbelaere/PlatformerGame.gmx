@@ -8,7 +8,7 @@
   <parentName>objPlayer</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,199 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize
-
-doResize();
-randomize();
-instance_create(0, 0, objPause);
-
-switching_ready = false;
-phy_fixed_rotation = true; //Prevents physics from affecting the object's rotation
-
-jump_multiplier = 300;
-jump_potential = 0;
-jump_max_potential = 10;
-jump_potential_multiplier = 25;
-can_jump = true;
-can_walljump = false;
-can_walljump_always = false;
-has_walljumped = false;
-last_walljump_was_right = false;
-
-is_sliding = false;
-slide_potential = 0;
-slide_max_potential = room_speed;
-
-is_crawling = false;
-
-move_slowdown_factor = 0.95;
-move_multiplier = 7;
-max_velocity_x = 128;
-
-action_kick = false;
-
-animation_counter = 0;
-
-global.always_switch = false;
-arriving = false;
-isInSwitchZone = false;
-canSwitchHere = false;
-
-debug_isFrictionBraking = false;
-
-dead = false;
-
-///Prevents constant movement when controller is plugged in. Decimal can be altered.
-
-gamepad_set_axis_deadzone(0, 0.3);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Control bindings
+            <string>///Disable controls
 
 controls_moveleft = -1;
 controls_moveright = -1;
 controls_upaction = -1;
 controls_downaction = -1;
 controls_kick = -1;
-
-puppet_moveleft_direct = false;
-puppet_moveright_direct = false;
-puppet_downaction_direct = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Physics fixtures
-
-fixture_standing = physics_fixture_create()
-physics_fixture_set_box_shape(fixture_standing, 6, 6);
-physics_fixture_set_density(fixture_standing, 2);
-physics_fixture_set_restitution(fixture_standing, 0);
-physics_fixture_set_linear_damping(fixture_standing, 0.1);
-physics_fixture_set_angular_damping(fixture_standing, 0.1);
-physics_fixture_set_friction(fixture_standing, 0.1);
-fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Switching arrival
-
-if (global.switchreality)
-{    
-    instance_create(0, 0, objSwitchOverlay);
-    audio_play_sound(sndSwitchOut, 0, false);
-        
-    phy_position_x = global.target_x;
-    phy_position_y = global.target_y;
-    
-    phy_linear_velocity_x = global.target_xvel;
-    phy_linear_velocity_y = global.target_yvel;
-    sprite_index =  global.target_sprindex 
-    
-    global.switchreality = false;
-    
-    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
-    emitter.emit_rate = room_speed / 32;
-    emitter.radius = 16;
-    emitter.target_sprite = sprSwitch;
-    emitter.max_emits = 8;
-    emitter.blend_color = c_white;
-    emitter.active = true;*/
-    
-    arriving = true;
-    
-    alarm[1] = room_speed / 2;
-    alarm[2] = 3;
-}
-else
-{
-    switching_ready = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Sliding particles/sfx init
-
-slide_loop = audio_play_sound(sndSlideLoop, 0, true);
-audio_sound_gain(slide_loop, 0, 0);
-
-spark_emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
-
-spark_emitter.emit_rate = room_speed / 16;
-spark_emitter.blend_color = c_dkgray;
-spark_emitter.radius = 8;
-spark_emitter.constrain_x = true;
-spark_emitter.target_sprite = sprSpark;
-spark_emitter.alternate_sides = true;
-spark_emitter.active = false;
 </string>
           </argument>
         </arguments>
