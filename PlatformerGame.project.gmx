@@ -104,9 +104,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
-    <room>rooms\rmMultiplayerMenu</room>
-    <room>rooms\rmMultiplayer</room>
     <room>rooms\rmMainMenu</room>
+    <room>rooms\rmMultiplayerMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
     <room>rooms\rmLevelOneA</room>
@@ -114,6 +113,7 @@
     <room>rooms\rmTesting</room>
     <room>rooms\rmOtherTest</room>
     <room>rooms\rmMovementTest</room>
+    <room>rooms\rmMultiplayer</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

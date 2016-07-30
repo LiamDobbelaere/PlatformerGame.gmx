@@ -28,8 +28,9 @@
             <string>event_inherited();
 
 menu_options[0] = "START";
-menu_options[1] = "OPTIONS";
-menu_options[2] = "QUIT";
+menu_options[1] = "MULTIPLAYER";
+menu_options[2] = "OPTIONS";
+menu_options[3] = "QUIT";
 </string>
           </argument>
         </arguments>
@@ -58,11 +59,15 @@ menu_options[2] = "QUIT";
     room_goto(rmLevelOneA);
     break;
     
-    case 1:
+    case 1: 
+    room_goto(rmMultiplayerMenu);
+    break;
+
+    case 2:
     room_goto(rmOptionsMenu);
     break;
     
-    case 2:
+    case 3:
     game_end();
     break;
 }

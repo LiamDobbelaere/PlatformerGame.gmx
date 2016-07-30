@@ -106,7 +106,7 @@ if (global.mp_role == "server")
 
 if (global.mp_role == "client")
 {
-    remote_ip = "178.117.107.177";
+    remote_ip = "127.0.0.1";
     
     render_queue = ds_list_create();
 
