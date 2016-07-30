@@ -71,7 +71,6 @@ playMusic(sndTech);</code>
     <instance objName="objEnemyTest" x="640" y="256" name="inst_69F4DD51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushboxMetal" x="672" y="256" name="inst_3D76C634" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBashableDoor" x="640" y="512" name="inst_D91C7982" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFloor" x="576" y="256" name="inst_AE8DBFFF" locked="0" code="" scaleX="1" scaleY="4.09677410125732" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="608" y="288" name="inst_D9184D6A" locked="0" code="" scaleX="2" scaleY="7" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="592" y="512" name="inst_CA5A9A11" locked="0" code="" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="672" y="496" name="inst_F5E8F461" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
@@ -98,6 +97,7 @@ playMusic(sndTech);</code>
     <instance objName="objPlayer" x="48" y="720" name="inst_3F56D86F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="80" y="544" name="inst_91DC04FA" locked="0" code="" scaleX="0.5" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="objSwitchZone" x="736" y="576" name="inst_EFE4ABC7" locked="0" code="" scaleX="23" scaleY="6" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="576" y="288" name="inst_C164571C" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgTileGrounds" x="32" y="736" w="32" h="32" xo="64" yo="0" id="10000002" name="inst_3CCC2709" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -329,6 +329,7 @@ playMusic(sndTech);</code>
     <tile bgName="bgTileGrounds" x="80" y="656" w="16" h="16" xo="96" yo="96" id="10000564" name="inst_CDDE37F2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="80" y="672" w="16" h="16" xo="96" yo="96" id="10000565" name="inst_AEEDB5B7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgTileGrounds" x="80" y="688" w="16" h="16" xo="96" yo="96" id="10000566" name="inst_9A9BDE4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgShade" x="576" y="256" w="32" h="32" xo="0" yo="0" id="10000570" name="inst_55F10F55" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

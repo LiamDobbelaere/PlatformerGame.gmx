@@ -120,40 +120,36 @@ if (instance_exists(objPlayer))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///get hit / hit back
-if(instance_exists(objPlayer)){
-if ( place_meeting ( x, y, objPlayer ) )
+            <string>///Get hit / hit back
+if(instance_exists(objPlayer))
 {
-
-if ( x &lt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = -1 )
-or ( x &gt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = 1 )
-{
-if ( objPlayer.sprite_index = sprPlayerKick )
-{
-
-    instance_create(x, y, objGibspawner);
-    instance_destroy();
-
-}
-
-}
-
-
-
-if (phy_speed_x &gt;=-.5 &amp;&amp; phy_speed_x &lt;=.5 )
-{ 
-objPlayer.dead = true
-}
-
-if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
-or ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
-{
-sprite_index = sprPlayerKick 
-if ( image_index &gt;=  4 ){
-objPlayer.dead = true
-}
-}
-}
+    if ( place_meeting ( x, y, objPlayer ) )
+    {
+        if ( x &lt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = -1 )
+        || ( x &gt;= objPlayer.x &amp;&amp; objPlayer.image_xscale = 1 )
+        {
+            if ( objPlayer.sprite_index = sprPlayerKick )
+            {
+                instance_create(x, y, objGibspawner);
+                instance_destroy();
+            }
+        }
+        
+        if (phy_speed_x &gt;=-.5 &amp;&amp; phy_speed_x &lt;=.5 )
+        { 
+            objPlayer.dead = true
+        }
+        
+        if ( x &lt;= objPlayer.x &amp;&amp; image_xscale = 1 )
+        || ( x &gt;= objPlayer.x &amp;&amp; image_xscale = -1 )
+        {
+            sprite_index = sprPlayerKick 
+            if ( image_index &gt;=  4 )
+            {
+                objPlayer.dead = true
+            }
+        }
+    }
 }
 
 </string>
