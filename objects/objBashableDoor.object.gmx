@@ -57,6 +57,16 @@
     image_single = 1;
     audio_play_sound(sndDoor, 0, false);
 }
+
+if (image_single == 0 &amp;&amp; distance_to_object(objClient) &lt; 8 
+    &amp;&amp; (abs(objClient.phy_linear_velocity_x) &gt; 133 || 
+    (objClient.action_kick &amp;&amp; objClient.image_xscale == 1) || objClient.sprite_index == sprPlayerFloorslide ))
+{
+    objClient.phy_linear_velocity_x = objPlayer.phy_linear_velocity_x / 2;
+    phy_active = false;
+    image_single = 1;
+    audio_play_sound(sndDoor, 0, false);
+}
 </string>
           </argument>
         </arguments>

@@ -71,6 +71,7 @@
     <font>fonts\atebit</font>
   </fonts>
   <objects name="objects">
+    <object>objects\objPlayerParent</object>
     <object>objects\objPlayer</object>
     <object>objects\objEnemyTest</object>
     <object>objects\objStatic</object>

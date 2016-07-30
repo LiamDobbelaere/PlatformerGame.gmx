@@ -53,7 +53,11 @@
   <instances>
     <instance objName="objMultiplayerManager" x="0" y="0" name="inst_6EEDECE9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="0" y="672" name="inst_75F9E385" locked="0" code="" scaleX="32" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPushboxMetal" x="416" y="640" name="inst_55913342" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPushboxMetal" x="544" y="480" name="inst_55913342" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="512" y="512" name="inst_E5400479" locked="0" code="" scaleX="2" scaleY="5" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="576" y="480" name="inst_3884FB4B" locked="0" code="" scaleX="2" scaleY="6" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="544" y="288" name="inst_D873D1ED" locked="0" code="" scaleX="4" scaleY="5" colour="4294967295" rotation="0"/>
+    <instance objName="objBashableDoor" x="608" y="448" name="inst_E9394922" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgStoneFloor" x="0" y="672" w="32" h="96" xo="32" yo="0" id="10000571" name="inst_444A1436" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -88,6 +92,48 @@
     <tile bgName="bgStoneFloor" x="960" y="672" w="32" h="96" xo="32" yo="0" id="10000607" name="inst_BB079109" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="896" y="672" w="32" h="96" xo="32" yo="0" id="10000608" name="inst_9086BDED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloor" x="992" y="672" w="32" h="96" xo="32" yo="0" id="10000609" name="inst_D366E9FE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="480" w="32" h="32" xo="0" yo="0" id="10000618" name="inst_E45D3BBC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="512" y="512" w="32" h="32" xo="0" yo="0" id="10000619" name="inst_AF3CD998" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="512" w="32" h="32" xo="32" yo="0" id="10000620" name="inst_64DD0224" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="512" w="32" h="32" xo="32" yo="0" id="10000621" name="inst_DD26235C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="608" w="32" h="32" xo="32" yo="32" id="10000622" name="inst_79561D63" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="576" w="32" h="32" xo="32" yo="32" id="10000623" name="inst_C5E1A65E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="544" w="32" h="32" xo="32" yo="32" id="10000624" name="inst_FFF6F003" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="608" w="32" h="32" xo="32" yo="32" id="10000625" name="inst_F3178000" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="576" w="32" h="32" xo="32" yo="32" id="10000626" name="inst_BB465F17" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="544" w="32" h="32" xo="32" yo="32" id="10000627" name="inst_F4251BD6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="512" y="544" w="32" h="32" xo="0" yo="32" id="10000628" name="inst_2B310A11" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="512" y="576" w="32" h="32" xo="0" yo="32" id="10000629" name="inst_D4D5B60E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="512" y="608" w="32" h="32" xo="0" yo="32" id="10000630" name="inst_9B00C707" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="512" y="640" w="32" h="32" xo="0" yo="64" id="10000631" name="inst_3E5E3D5A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="640" w="32" h="32" xo="32" yo="64" id="10000633" name="inst_F2370457" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="640" w="32" h="32" xo="32" yo="64" id="10000634" name="inst_F346C326" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="480" w="32" h="32" xo="64" yo="0" id="10000635" name="inst_2FCA55F6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="512" w="32" h="32" xo="64" yo="32" id="10000636" name="inst_E6F2B813" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="544" w="32" h="32" xo="64" yo="32" id="10000637" name="inst_AD5F6E69" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="576" w="32" h="32" xo="64" yo="32" id="10000638" name="inst_87CC5766" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="608" w="32" h="32" xo="64" yo="32" id="10000639" name="inst_64E611BD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="640" w="32" h="32" xo="64" yo="64" id="10000640" name="inst_9D18DE65" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="416" w="32" h="32" xo="32" yo="64" id="10000641" name="inst_05CBB291" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="416" w="32" h="32" xo="32" yo="64" id="10000642" name="inst_FE2654DF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="384" w="32" h="32" xo="32" yo="32" id="10000644" name="inst_C0D1019D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="384" w="32" h="32" xo="32" yo="32" id="10000645" name="inst_E14A59C7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="352" w="32" h="32" xo="32" yo="32" id="10000646" name="inst_123596C1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="352" w="32" h="32" xo="32" yo="32" id="10000647" name="inst_76C03005" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="320" w="32" h="32" xo="32" yo="32" id="10000648" name="inst_7D86AC33" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="320" w="32" h="32" xo="32" yo="32" id="10000649" name="inst_618B4C35" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="288" w="32" h="32" xo="0" yo="0" id="10000650" name="inst_A255AE8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="640" y="288" w="32" h="32" xo="64" yo="0" id="10000651" name="inst_3EB8AAFA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="576" y="288" w="32" h="32" xo="32" yo="0" id="10000652" name="inst_7B2EE9AA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="608" y="288" w="32" h="32" xo="32" yo="0" id="10000653" name="inst_1A25F10E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="320" w="32" h="32" xo="0" yo="32" id="10000654" name="inst_432B9F2F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="352" w="32" h="32" xo="0" yo="32" id="10000655" name="inst_CF79C630" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="384" w="32" h="32" xo="0" yo="32" id="10000656" name="inst_05723468" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="544" y="416" w="32" h="32" xo="0" yo="64" id="10000657" name="inst_E93A8784" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="640" y="416" w="32" h="32" xo="64" yo="64" id="10000658" name="inst_86EE0A63" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="640" y="384" w="32" h="32" xo="64" yo="32" id="10000659" name="inst_4967A522" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="640" y="352" w="32" h="32" xo="64" yo="32" id="10000660" name="inst_1E02F92B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgStoneFloor" x="640" y="320" w="32" h="32" xo="64" yo="32" id="10000661" name="inst_36DBBD3A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

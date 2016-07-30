@@ -130,6 +130,8 @@ if (global.mp_role == "client")
     network_send_udp(client_udp, remote_ip, server_port, t_buffer, buffer_tell(t_buffer));
     buffer_delete(t_buffer);
     
+    with (objDynamic) instance_destroy();
+    
     instance_create(0, 0, objClientView);
     view_visible[1] = true;
     log += "CLIENT INITIALIZED#";
@@ -174,6 +176,19 @@ if (instance_exists(objClient))
     buffer_write(tmp_buffer , buffer_u8, objClient.sprite_index);
     buffer_write(tmp_buffer , buffer_s8, objClient.image_xscale);
     buffer_write(tmp_buffer , buffer_u8, objClient.image_index);
+}
+
+var dynamicCount = instance_number(objDynamic);
+buffer_write(tmp_buffer, buffer_u16, dynamicCount);
+
+for (var i = 0; i &lt; dynamicCount; i++)
+{
+    var instance = instance_find(objDynamic, i);
+    buffer_write(tmp_buffer, buffer_s16, instance.phy_position_x);
+    buffer_write(tmp_buffer, buffer_s16, instance.phy_position_y);
+    buffer_write(tmp_buffer, buffer_u8, instance.sprite_index);
+    buffer_write(tmp_buffer, buffer_s8, instance.image_xscale);
+    buffer_write(tmp_buffer, buffer_u8, instance.image_index);
 }
 
 
@@ -305,6 +320,21 @@ if (global.mp_role == "server")
                                 }
                             }
                             break;
+                        case vk_down:
+                            with (puppet) {
+                                var bool =  buffer_read(t_buffer, buffer_bool);
+                                puppet_downaction_direct = bool;
+                                
+                                if (bool == true)
+                                {
+                                    puppet_downaction_pressed = true;
+                                }
+                                else
+                                {
+                                    puppet_downaction_released = true;
+                                }
+                            }
+                            break;
                     }
                     
                     break;
@@ -355,6 +385,16 @@ if (global.mp_role == "client")
         ds_list_add(render_queue, buffer_read(buff, buffer_s8));
         ds_list_add(render_queue, buffer_read(buff, buffer_u8)); 
         
+        var dynamicObjects = buffer_read(buff, buffer_u16);
+        for (var i = 0; i &lt; dynamicObjects; i++)
+        {
+            ds_list_add(render_queue, buffer_read(buff, buffer_s16));
+            ds_list_add(render_queue, buffer_read(buff, buffer_s16));   
+            ds_list_add(render_queue, buffer_read(buff, buffer_u8));
+            ds_list_add(render_queue, buffer_read(buff, buffer_s8));
+            ds_list_add(render_queue, buffer_read(buff, buffer_u8)); 
+        }
+    
         objClientView.x = ds_list_find_value(render_queue, 5);
         objClientView.y = ds_list_find_value(render_queue, 6);      
     }
@@ -434,7 +474,7 @@ if (global.mp_role == "client")
     {
         var blendCol = c_white;
     
-        if (i &gt;= ds_list_size(render_queue) / 2)
+        if (i == 5) //We are second in the render queue
         {
             blendCol = c_aqua;
         }
