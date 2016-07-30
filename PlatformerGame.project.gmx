@@ -63,6 +63,7 @@
     <script>scripts\saveControls.gml</script>
     <script>scripts\updateControlsList.gml</script>
     <script>scripts\doResize.gml</script>
+    <script>scripts\makeKeyBuffer.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
@@ -96,6 +97,7 @@
     <object>objects\objTrapSpike</object>
     <object>objects\objMultiplayerManager</object>
     <object>objects\objGameVersion</object>
+    <object>objects\objClient</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
@@ -107,6 +109,7 @@
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmLevelOneB</room>
     <room>rooms\rmTesting</room>
+    <room>rooms\rmOtherTest</room>
     <room>rooms\rmMovementTest</room>
   </rooms>
   <help>

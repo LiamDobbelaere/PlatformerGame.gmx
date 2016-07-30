@@ -25,11 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+            <string>draw_set_halign(fa_right);
+draw_set_valign(fa_bottom);
 draw_set_color(c_blue);
-draw_text(32, 32, date_time_string(GM_build_date));
-draw_text(32, 64, "v" + GM_version);
+draw_text(room_width, room_height, date_time_string(GM_build_date) + "#" + "v" + GM_version);
+
 
 </string>
           </argument>

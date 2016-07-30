@@ -97,6 +97,10 @@ controls_moveright = global.key_right;
 controls_upaction = global.key_up;
 controls_downaction = global.key_down;
 controls_kick = global.key_kick;
+
+puppet_moveleft_direct = false;
+puppet_moveright_direct = false;
+puppet_downaction_direct = false;
 </string>
           </argument>
         </arguments>
@@ -360,13 +364,13 @@ else
 }
 
 //Moving right
-if ( (keyboard_check_direct(controls_moveright) || gamepad_axis_value(0, gp_axislh) &gt; 0) &amp;&amp; phy_linear_velocity_x &lt; max_velocity_x / velocity_x_divider )
+if ( (keyboard_check_direct(controls_moveright) || puppet_moveright_direct || gamepad_axis_value(0, gp_axislh) &gt; 0) &amp;&amp; phy_linear_velocity_x &lt; max_velocity_x / velocity_x_divider )
 {
     physics_apply_force(x, y, (phy_mass * move_multiplier), 0);
 }
 
 //Moving left
-if ( (keyboard_check_direct(controls_moveleft) || gamepad_axis_value(0, gp_axislh) &lt; 0) &amp;&amp; phy_linear_velocity_x &gt; -max_velocity_x / velocity_x_divider )
+if ( (keyboard_check_direct(controls_moveleft) || puppet_moveleft_direct || gamepad_axis_value(0, gp_axislh) &lt; 0) &amp;&amp; phy_linear_velocity_x &gt; -max_velocity_x / velocity_x_divider )
 {
     physics_apply_force(x, y, -(phy_mass * move_multiplier), 0);
 }
@@ -746,6 +750,7 @@ phy_speed_y = -3
 if (!keyboard_check_direct(controls_moveright) 
     &amp;&amp; !keyboard_check_direct(controls_moveleft) 
     &amp;&amp; !keyboard_check_direct(controls_downaction)
+    &amp;&amp; !puppet_moveright_direct &amp;&amp; !puppet_moveleft_direct &amp;&amp; !puppet_downaction_direct
     &amp;&amp; gamepad_axis_value(0, gp_axislh) == 0
     &amp;&amp; gamepad_axis_value(0, gp_axislv) &lt;= 0)
 {

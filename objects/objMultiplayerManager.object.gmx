@@ -54,6 +54,8 @@ log = "";
 
 if (global.mp_role == "server")
 {
+    socketlist = ds_list_create();
+
     server_tcp = network_create_server(network_socket_tcp, 7050, 1);
     server_udp = network_create_server(network_socket_udp, 7051, 1);
     
@@ -66,10 +68,15 @@ if (global.mp_role == "server")
     {
         log += "FAILURE SETTING UP UDP SERVER#";
     }
-
-    socketlist = ds_list_create();
+    
+    instance_create(0, 0, objPlayer);
+    view_visible[0] = true;
     
     log += "SERVER INITIALIZED#";
+    
+    tickrate = 1;
+    
+    alarm[0] = tickrate;
 }
 </string>
           </argument>
@@ -97,11 +104,13 @@ if (global.mp_role == "server")
 
 if (global.mp_role == "client")
 {
+    render_queue = ds_list_create();
+
     client_tcp = network_create_socket(network_socket_tcp);
     client_udp = network_create_socket(network_socket_udp);
     
-    network_connect(client_tcp, "127.0.0.1", 7050);
-    network_connect(client_udp, "127.0.0.1", 7050);
+    network_connect(client_tcp, "178.117.107.177", 7050);
+    network_connect(client_udp, "178.117.107.177", 7050);
     
     if (client_tcp &lt; 0)
     {
@@ -113,8 +122,105 @@ if (global.mp_role == "client")
         log += "FAILURE CONNECTING TO UDP SERVER#";
     }
 
+    view_visible[1] = true;
     log += "CLIENT INITIALIZED#";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Server tick
+
+var tmp_buffer = buffer_create(256, buffer_grow, 1);
+buffer_seek(tmp_buffer, buffer_seek_start, 0);
+buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_x);
+buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_y);
+
+if (instance_exists(objClient))
+{
+    buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_x);
+    buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_y);
+}
+
+for (var i = 0; i &lt; ds_list_size(socketlist); i++)
+{
+    network_send_packet(ds_list_find_value(socketlist, i), tmp_buffer, buffer_tell(tmp_buffer));
+}
+
+buffer_delete(tmp_buffer);
+
+alarm[0] = tickrate;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Client controls
+
+if (global.mp_role == "client")
+{
+    if (keyboard_check_pressed(vk_right))
+    {
+        var t_buffer = makeKeyBuffer(vk_right, true);
+        network_send_packet(client_tcp, t_buffer, buffer_tell(t_buffer));
+        buffer_delete(t_buffer);
+    }
     
+    if (keyboard_check_released(vk_right))
+    {
+        var t_buffer = makeKeyBuffer(vk_right, false);
+        network_send_packet(client_tcp, t_buffer, buffer_tell(t_buffer));
+        buffer_delete(t_buffer);
+    }
+    
+    if (keyboard_check_pressed(vk_left))
+    {
+        var t_buffer = makeKeyBuffer(vk_left, true);
+        network_send_packet(client_tcp, t_buffer, buffer_tell(t_buffer));
+        buffer_delete(t_buffer);
+    }
+    
+    if (keyboard_check_released(vk_left))
+    {
+        var t_buffer = makeKeyBuffer(vk_left, false);
+        network_send_packet(client_tcp, t_buffer, buffer_tell(t_buffer));
+        buffer_delete(t_buffer);
+    }
 }
 </string>
           </argument>
@@ -140,45 +246,63 @@ if (global.mp_role == "client")
             <kind>1</kind>
             <string>///Server code
 
-log += "NEW EVENT APPORACHES HOLY SHIT#";
-
-if (global.mp_role) != "server" exit;
-
-/* TCP (chat/other guarantee-receive operations) */
-var netev_socket = ds_map_find_value(async_load, "id");
-//if netev_socket == server_tcp
-//{
-    log += "NEW NETWORK EVENT:#";
-
-    var netev_type = ds_map_find_value(async_load, "type");
-
-    switch(netev_type)
+if (global.mp_role == "server")
+{
+    /* TCP (chat/other guarantee-receive operations) */
+    var netev_socket = ds_map_find_value(async_load, "id");
+    if netev_socket == server_tcp
     {
-    case network_type_connect:
-        var sock = ds_map_find_value(async_load, "socket");
-        ds_list_add(socketlist, sock);
-        log += "A CLIENT CONNECTED!";
-        break;
-    case network_type_disconnect:
-        var sock = ds_map_find_value(async_load, "socket");
-        ds_map_delete(socketlist, sock);
-        log += "A CLIENT DISCONNECTED!";
-        break;
-    case network_type_data:
-        var t_buffer = ds_map_find_value(async_load, "buffer"); 
-        var cmd = buffer_read(t_buffer, buffer_string);
-        log += "DATA RECEIVED!";
-        
-        switch (cmd)
+    
+        var netev_type = ds_map_find_value(async_load, "type");
+    
+        switch(netev_type)
         {
-            case "keyp":
-                var keyname = buffer_read(t_buffer, buffer_string);
-                log += "KEY " + keyname  + " PRESS RECEIVED!";
-                break;
-        }        
-        break;
+        case network_type_connect:
+            var sock = ds_map_find_value(async_load, "socket");
+            ds_list_add(socketlist, sock);
+            log += "A CLIENT CONNECTED!";
+            puppet = instance_create(0, 0, objClient);
+            puppet.image_blend = c_aqua;
+            break;
+        case network_type_disconnect:
+            var sock = ds_map_find_value(async_load, "socket");
+            ds_list_delete(socketlist, sock);
+            log += "A CLIENT DISCONNECTED!";
+            with (puppet) instance_destroy();
+            break;
+        }
     }
-//}
+    else
+    {
+        var netev_type = ds_map_find_value(async_load, "type");
+    
+        switch(netev_type)
+        {
+        case network_type_data:
+            var t_buffer = ds_map_find_value(async_load, "buffer"); 
+            var cmd = buffer_read(t_buffer, buffer_string);
+            
+            switch (cmd)
+            {
+                case "key":
+                    var keyname = buffer_read(t_buffer, buffer_u8);
+                    
+                    switch (keyname)
+                    {
+                        case vk_right:
+                            with (puppet) puppet_moveright_direct = buffer_read(t_buffer, buffer_bool);
+                            break;
+                        case vk_left:
+                            with (puppet) puppet_moveleft_direct = buffer_read(t_buffer, buffer_bool);
+                            break;
+                    }
+                    
+                    break;
+            }        
+            break;
+        }
+    }
+}
 
 </string>
           </argument>
@@ -202,13 +326,20 @@ var netev_socket = ds_map_find_value(async_load, "id");
             <kind>1</kind>
             <string>///Client code
 
-if (global.mp_role) != "client" exit;
-
-/* TCP (chat/other guarantee-receive operations) */
-var netev_socket = ds_map_find_value(async_load, "id");
-if netev_socket == client_tcp
-{
-
+if (global.mp_role == "client")
+{      
+    /* TCP (chat/other guarantee-receive operations) */
+    var netev_socket = ds_map_find_value(async_load, "id");
+    if netev_socket == client_tcp
+    {   
+        var buff = ds_map_find_value(async_load, "buffer"); 
+    
+        ds_list_clear(render_queue);
+        ds_list_add(render_queue, buffer_read(buff, buffer_s16));
+        ds_list_add(render_queue, buffer_read(buff, buffer_s16));
+        ds_list_add(render_queue, buffer_read(buff, buffer_s16));
+        ds_list_add(render_queue, buffer_read(buff, buffer_s16));   
+    }
 }
 </string>
           </argument>
@@ -232,7 +363,7 @@ if netev_socket == client_tcp
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.mp_role == "client")
+            <string>if (global.mp_role == "server")
 {
     network_destroy(server_tcp);
     network_destroy(server_udp);
@@ -269,38 +400,15 @@ if (global.mp_role == "client")
 draw_set_valign(fa_top);
 draw_set_color(c_black);
 draw_set_font(global.font);
-draw_text(0, 0, log);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (global.mp_role == "client")
+draw_text(view_xview[0], view_yview[0], log);
+
+if (global.mp_role == "client")
 {
-    var t_buffer = buffer_create(256, buffer_grow, 1);
-    buffer_seek(t_buffer, buffer_seek_start, 0);
-    buffer_write(t_buffer , buffer_string, "keyp");
-    buffer_write(t_buffer , buffer_string, "right");
-    buffer_write(t_buffer , buffer_bool, true);
-    network_send_packet(client_tcp, t_buffer, buffer_tell(t_buffer));
-    buffer_delete(t_buffer);
+    for (var i = 0; i &lt; ds_list_size(render_queue); i+=2)
+    {
+        draw_sprite(sprPlayerStanding, 0, ds_list_find_value(render_queue, i), 
+                                          ds_list_find_value(render_queue, i + 1));
+    }
 }
 </string>
           </argument>
