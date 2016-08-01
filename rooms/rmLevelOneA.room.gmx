@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1024</width>
   <height>768</height>
-  <vsnap>16</vsnap>
-  <hsnap>16</hsnap>
+  <vsnap>32</vsnap>
+  <hsnap>32</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
@@ -55,8 +55,14 @@ global.linked_room = rmLevelOneB;</code>
     <instance objName="objFloor" x="0" y="544" name="inst_611E1536" locked="0" code="" scaleX="1" scaleY="7" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="32" y="672" name="inst_57E331D7" locked="0" code="" scaleX="3" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="192" y="672" name="inst_68E9D0F4" locked="0" code="" scaleX="7" scaleY="3" colour="4294967295" rotation="0"/>
-    <instance objName="objFloor" x="288" y="576" name="inst_FEBFB01D" locked="0" code="" scaleX="3" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objPlayer" x="64" y="640" name="inst_12414717" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEnemyTest" x="592" y="560" name="inst_A7A44F62" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="384" y="576" name="inst_D7774E5F" locked="0" code="" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="288" y="576" name="inst_54828CE2" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="416" y="672" name="inst_450FD996" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="448" y="672" name="inst_43C2AF51" locked="0" code="" scaleX="9.5" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="752" y="576" name="inst_0810B408" locked="0" code="" scaleX="1" scaleY="4" colour="4294967295" rotation="0"/>
+    <instance objName="objFloor" x="672" y="608" name="inst_6EE1D28B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgStoneFloorMossy" x="32" y="672" w="32" h="96" xo="32" yo="0" id="10000487" name="inst_EA194293" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -76,6 +82,23 @@ global.linked_room = rmLevelOneB;</code>
     <tile bgName="bgStoneFloorMossy" x="320" y="672" w="32" h="96" xo="32" yo="0" id="10000507" name="inst_F5383107" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloorMossy" x="352" y="672" w="32" h="96" xo="32" yo="0" id="10000508" name="inst_D057DD16" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgStoneFloorMossy" x="384" y="672" w="32" h="96" xo="64" yo="0" id="10000526" name="inst_3EC80010" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="416" y="672" w="32" h="32" xo="0" yo="0" id="10000610" name="inst_7237088A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="448" y="672" w="32" h="32" xo="0" yo="0" id="10000611" name="inst_F9916AEB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="480" y="672" w="32" h="32" xo="0" yo="0" id="10000612" name="inst_D38E67C2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="512" y="672" w="32" h="32" xo="0" yo="0" id="10000613" name="inst_83E02400" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="544" y="672" w="32" h="32" xo="0" yo="0" id="10000614" name="inst_81032ED9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="576" y="672" w="32" h="32" xo="0" yo="0" id="10000615" name="inst_E156A4F3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="608" y="672" w="32" h="32" xo="0" yo="0" id="10000616" name="inst_59CA5EC1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="640" y="672" w="32" h="32" xo="0" yo="0" id="10000617" name="inst_E8D96667" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="672" y="672" w="32" h="32" xo="0" yo="0" id="10000618" name="inst_4E177E8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="704" y="672" w="32" h="32" xo="0" yo="0" id="10000619" name="inst_448E1EA8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="736" y="672" w="32" h="32" xo="0" yo="0" id="10000620" name="inst_CCF787C9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="768" y="608" w="32" h="32" xo="0" yo="0" id="10000623" name="inst_8F241E86" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="768" y="576" w="32" h="32" xo="0" yo="0" id="10000627" name="inst_BE5E8CC3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="768" y="640" w="32" h="32" xo="0" yo="0" id="10000628" name="inst_256047E9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="672" y="576" w="32" h="32" xo="0" yo="0" id="10000629" name="inst_6B154CD9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="672" y="608" w="32" h="32" xo="0" yo="0" id="10000630" name="inst_D99C5A2B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgTileGrounds" x="640" y="576" w="32" h="32" xo="0" yo="0" id="10000631" name="inst_B0095578" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
