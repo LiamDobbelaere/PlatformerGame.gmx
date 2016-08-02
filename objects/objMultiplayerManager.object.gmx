@@ -29,6 +29,8 @@
 
 log = "";
 server_port = 7051;
+tickrate = 1;
+clock = 0;
 </string>
           </argument>
         </arguments>
@@ -76,8 +78,6 @@ if (global.mp_role == "server")
     
     log += "SERVER INITIALIZED#";
     
-    tickrate = 1;
-    
     alarm[0] = tickrate;
 }
 </string>
@@ -107,6 +107,7 @@ if (global.mp_role == "server")
 if (global.mp_role == "client")
 {
     remote_ip = "127.0.0.1";
+    last_server_update = 0;
     
     render_queue = ds_list_create();
 
@@ -131,10 +132,12 @@ if (global.mp_role == "client")
     buffer_delete(t_buffer);
     
     with (objDynamic) instance_destroy();
-    
+    puppet = instance_create(0, 0, objClient);
     instance_create(0, 0, objClientView);
     view_visible[1] = true;
     log += "CLIENT INITIALIZED#";
+    
+    alarm[0] = tickrate;
 }
 
 </string>
@@ -160,46 +163,52 @@ if (global.mp_role == "client")
           <argument>
             <kind>1</kind>
             <string>///Server tick
-
-var tmp_buffer = buffer_create(256, buffer_grow, 1);
-buffer_seek(tmp_buffer, buffer_seek_start, 0);
-buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_x);
-buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_y);
-buffer_write(tmp_buffer , buffer_u8, objPlayer.sprite_index);
-buffer_write(tmp_buffer , buffer_s8, objPlayer.image_xscale);
-buffer_write(tmp_buffer , buffer_u8, objPlayer.image_index);
-
-if (instance_exists(objClient))
+if (global.mp_role == "server")
 {
-    buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_x);
-    buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_y);
-    buffer_write(tmp_buffer , buffer_u8, objClient.sprite_index);
-    buffer_write(tmp_buffer , buffer_s8, objClient.image_xscale);
-    buffer_write(tmp_buffer , buffer_u8, objClient.image_index);
+    var tmp_buffer = buffer_create(256, buffer_grow, 1);
+    buffer_seek(tmp_buffer, buffer_seek_start, 0);
+    buffer_write(tmp_buffer , buffer_u32, clock);
+    buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_x);
+    buffer_write(tmp_buffer , buffer_s16, objPlayer.phy_position_y);
+    buffer_write(tmp_buffer , buffer_u8, objPlayer.sprite_index);
+    buffer_write(tmp_buffer , buffer_s8, objPlayer.image_xscale);
+    buffer_write(tmp_buffer , buffer_u8, objPlayer.image_index);
+    //buffer_u32
+    if (instance_exists(objClient))
+    {
+        buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_x);
+        buffer_write(tmp_buffer , buffer_s16, objClient.phy_position_y);
+        buffer_write(tmp_buffer, buffer_s16, objClient.phy_linear_velocity_x);
+        buffer_write(tmp_buffer, buffer_s16, objClient.phy_linear_velocity_y);
+        buffer_write(tmp_buffer , buffer_u8, objClient.sprite_index);
+        buffer_write(tmp_buffer , buffer_s8, objClient.image_xscale);
+        buffer_write(tmp_buffer , buffer_u8, objClient.image_index);
+    }
+    
+    var dynamicCount = instance_number(objDynamic);
+    buffer_write(tmp_buffer, buffer_u16, dynamicCount);
+    
+    for (var i = 0; i &lt; dynamicCount; i++)
+    {
+        var instance = instance_find(objDynamic, i);
+        buffer_write(tmp_buffer, buffer_s16, instance.phy_position_x);
+        buffer_write(tmp_buffer, buffer_s16, instance.phy_position_y);
+        buffer_write(tmp_buffer, buffer_u8, instance.sprite_index);
+        buffer_write(tmp_buffer, buffer_s8, instance.image_xscale);
+        buffer_write(tmp_buffer, buffer_u8, instance.image_index);
+    }
+    
+    
+    if (ds_map_size(client_map) &gt; 0)
+    {
+        var key = ds_map_find_first(client_map);
+        network_send_udp(server_udp, key, ds_map_find_value(client_map, key), tmp_buffer, buffer_tell(tmp_buffer));
+    }
+    
+    buffer_delete(tmp_buffer);
 }
 
-var dynamicCount = instance_number(objDynamic);
-buffer_write(tmp_buffer, buffer_u16, dynamicCount);
-
-for (var i = 0; i &lt; dynamicCount; i++)
-{
-    var instance = instance_find(objDynamic, i);
-    buffer_write(tmp_buffer, buffer_s16, instance.phy_position_x);
-    buffer_write(tmp_buffer, buffer_s16, instance.phy_position_y);
-    buffer_write(tmp_buffer, buffer_u8, instance.sprite_index);
-    buffer_write(tmp_buffer, buffer_s8, instance.image_xscale);
-    buffer_write(tmp_buffer, buffer_u8, instance.image_index);
-}
-
-
-if (ds_map_size(client_map) &gt; 0)
-{
-    var key = ds_map_find_first(client_map);
-    network_send_udp(server_udp, key, ds_map_find_value(client_map, key), tmp_buffer, buffer_tell(tmp_buffer));
-}
-
-buffer_delete(tmp_buffer);
-
+clock += 1;
 alarm[0] = tickrate;
 </string>
           </argument>
@@ -289,6 +298,7 @@ if (global.mp_role == "server")
             switch (cmd)
             {
                 case "hello":    
+                    clock = 0;
                     ds_map_add(client_map, string(netev_ip), real(netev_port));
                     log += "A CLIENT CONNECTED!";
                     puppet = instance_create(0, 0, objClient);
@@ -372,7 +382,8 @@ if (global.mp_role == "client")
     if netev_socket == client_udp
     {   
         var buff = ds_map_find_value(async_load, "buffer"); 
-    
+        server_clock = buffer_read(buff, buffer_u32);
+        
         ds_list_clear(render_queue);
         ds_list_add(render_queue, buffer_read(buff, buffer_s16));
         ds_list_add(render_queue, buffer_read(buff, buffer_s16));
@@ -381,6 +392,10 @@ if (global.mp_role == "client")
         ds_list_add(render_queue, buffer_read(buff, buffer_u8));
         ds_list_add(render_queue, buffer_read(buff, buffer_s16));
         ds_list_add(render_queue, buffer_read(buff, buffer_s16));   
+        
+        lin_vel_x = buffer_read(buff, buffer_s16);
+        lin_vel_y = buffer_read(buff, buffer_s16);
+        
         ds_list_add(render_queue, buffer_read(buff, buffer_u8));
         ds_list_add(render_queue, buffer_read(buff, buffer_s8));
         ds_list_add(render_queue, buffer_read(buff, buffer_u8)); 
@@ -394,9 +409,27 @@ if (global.mp_role == "client")
             ds_list_add(render_queue, buffer_read(buff, buffer_s8));
             ds_list_add(render_queue, buffer_read(buff, buffer_u8)); 
         }
-    
-        objClientView.x = ds_list_find_value(render_queue, 5);
-        objClientView.y = ds_list_find_value(render_queue, 6);      
+        
+        client_serverX = ds_list_find_value(render_queue, 5);
+        client_serverY = ds_list_find_value(render_queue, 6);
+        
+        if (last_server_update &gt; 60)
+        {
+            if (client_serverX != objClient.phy_position_x || client_serverY != objClient.phy_position_y)
+            {
+                objClient.phy_position_x = client_serverX;
+                objClient.phy_position_y = client_serverY;
+                objClient.phy_linear_velocity_x = lin_vel_x;
+                objClient.phy_linear_velocity_y = lin_vel_y;
+                log += "NEWPOS#";
+            }
+        
+            last_server_update = 0;
+        }
+        
+
+        clock = server_clock;
+        last_server_update ++;
     }
 }
 </string>
@@ -461,12 +494,17 @@ draw_set_font(global.font);
 
 if (global.mp_role == "client")
 {
+    draw_text(view_xview[1], view_yview[1] + 32, clock);
     draw_text(view_xview[1], view_yview[1], log);
 }
 else
 {
+    draw_text(view_xview[0], view_yview[0] + 32, clock);
     draw_text(view_xview[0], view_yview[0], log);
 }
+
+draw_set_color(c_lime);
+
 
 if (global.mp_role == "client")
 {
@@ -476,13 +514,19 @@ if (global.mp_role == "client")
     
         if (i == 5) //We are second in the render queue
         {
-            blendCol = c_aqua;
+            //Skip drawing us
+            i += 5;
+            blendCol = c_aqua;   
         }
-        
-        draw_sprite_ext(ds_list_find_value(render_queue, i + 2), ds_list_find_value(render_queue, i + 4), ds_list_find_value(render_queue, i), 
+        else
+        {
+            draw_sprite_ext(ds_list_find_value(render_queue, i + 2), ds_list_find_value(render_queue, i + 4), ds_list_find_value(render_queue, i), 
                                           ds_list_find_value(render_queue, i + 1), ds_list_find_value(render_queue, i + 3), 1, 0, blendCol, 1);
+        }       
     }
 }
+
+if (string_length(log) &gt; 500) log = "";
 </string>
           </argument>
         </arguments>

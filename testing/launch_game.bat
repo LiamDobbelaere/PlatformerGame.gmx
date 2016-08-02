@@ -1,5 +1,5 @@
 @echo off
-set sessionid=42819
+set sessionid=13025
 set gamename=PlatformerGame
 
 set runner="C:\Users\Tom Dobbelaere\AppData\Roaming\GameMaker-Studio\Runner.exe" -game

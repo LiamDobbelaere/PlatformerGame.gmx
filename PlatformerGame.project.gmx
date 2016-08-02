@@ -66,6 +66,7 @@
     <script>scripts\makeKeyBuffer.gml</script>
     <script>scripts\makeHelloBuffer.gml</script>
     <script>scripts\netKeyPressRelease.gml</script>
+    <script>scripts\clientSimulateKeypress.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\atebit</font>
