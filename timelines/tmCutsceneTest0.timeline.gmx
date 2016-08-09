@@ -24,7 +24,7 @@
 
 objPlayer.phy_speed_x-=2
 
-objCutscene.text = "DAMN MY LIFE..."
+objCutscene.text = "0."
 
 objDialog.follow = objPlayer
 </string>
@@ -54,8 +54,8 @@ objDialog.follow = objPlayer
             <kind>1</kind>
             <string>objPlayer.phy_speed_x=6
 objPlayer.phy_speed_y-=12
-
-objCutscene.text = "OH SHIT!"
+audio_play_sound(sndJump, 0, false);
+objCutscene.text = "0"
 
 </string>
           </argument>
@@ -83,7 +83,7 @@ objCutscene.text = "OH SHIT!"
           <argument>
             <kind>1</kind>
             <string>
-objCutscene.text = "HAHA!"
+objCutscene.text = "1"
 
 </string>
           </argument>
@@ -112,7 +112,7 @@ objCutscene.text = "HAHA!"
             <kind>1</kind>
             <string>
 objPlayer.phy_speed_x=4
-objCutscene.text = "RANDOM TEXT"
+objCutscene.text = "2"
 
 </string>
           </argument>
@@ -141,7 +141,7 @@ objCutscene.text = "RANDOM TEXT"
             <kind>1</kind>
             <string>
 objPlayer.phy_speed_x=4
-objCutscene.text = "RANDOM TEXT"
+objCutscene.text = "3"
 
 </string>
           </argument>
@@ -170,7 +170,7 @@ objCutscene.text = "RANDOM TEXT"
             <kind>1</kind>
             <string>
 objPlayer.phy_speed_x=4
-objCutscene.text = "RANDOM TEXT"
+objCutscene.text = "4"
 
 </string>
           </argument>
@@ -199,7 +199,7 @@ objCutscene.text = "RANDOM TEXT"
             <kind>1</kind>
             <string>
 objPlayer.phy_speed_x=4
-objCutscene.text = "RANDOM TEXT"
+objCutscene.text = "5"
 
 </string>
           </argument>
@@ -228,7 +228,7 @@ objCutscene.text = "RANDOM TEXT"
             <kind>1</kind>
             <string>
 objPlayer.phy_speed_x=2
-objCutscene.text = "WOW, IM S@NIC!"
+objCutscene.text = "6"
 
 </string>
           </argument>
@@ -257,7 +257,7 @@ objCutscene.text = "WOW, IM S@NIC!"
             <kind>1</kind>
             <string>
 
-objCutscene.text = "YEAH THIS IS BORING..."
+objCutscene.text = "7"
 
 </string>
           </argument>
@@ -286,7 +286,7 @@ objCutscene.text = "YEAH THIS IS BORING..."
             <kind>1</kind>
             <string>
 
-objCutscene.text = "WAITNING SURE IS FUN!!!"
+objCutscene.text = "8"
 
 </string>
           </argument>
