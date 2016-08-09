@@ -97,12 +97,18 @@
     <object>objects\objKeyController</object>
     <object>objects\objParticle</object>
     <object>objects\objSwitchOverlay</object>
-    <object>objects\objTrapSpike</object>
     <object>objects\objMultiplayerManager</object>
     <object>objects\objGameVersion</object>
     <object>objects\objClient</object>
     <object>objects\objClientView</object>
+    <objects name="dialog">
+      <object>objects\objDialog</object>
+      <object>objects\objCutscene</object>
+    </objects>
   </objects>
+  <timelines name="timelines">
+    <timeline>timelines\tmCutsceneTest0</timeline>
+  </timelines>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
     <room>rooms\rmMainMenu</room>
