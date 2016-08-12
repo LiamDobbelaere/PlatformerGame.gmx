@@ -79,7 +79,7 @@ timeline_time = 1000
 global.cutscene=true
 }
 if ( global.cutscene = true ){
-timeline_index = tmCutsceneTest0
+timeline_index = tmTutorial0
 timeline_running = true
 instance_create( x , y , objDialog )
 

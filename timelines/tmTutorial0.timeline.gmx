@@ -21,40 +21,11 @@
             <kind>1</kind>
             <string>objDialog.follow = objPlayer;
 objPlayer.is_crawling = false;
-objPlayer.phy_speed_x = 0;
+objPlayer.cutscene_go_speed = 0;
+objDialog.color = c_white
+objPlayer.cutscene_go_speed =+1
+objCutscene.text = "CONNOR##BETTER GET OUT OF HERE BEFORE THEY FIND ME...";
 
-objCutscene.text = "0.";
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>100</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>objPlayer.phy_speed_x=8
-objPlayer.phy_speed_y-=12
-audio_play_sound(sndJump, 0, false);
-objCutscene.text = "0"
 
 </string>
           </argument>
@@ -81,153 +52,13 @@ objCutscene.text = "0"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-objCutscene.text = "1"
+            <string>objDialog.follow = objPlayer;
+objPlayer.is_crawling = false;
+objPlayer.cutscene_go_speed = 0;
+objDialog.color = c_white
+objPlayer.cutscene_go_speed =+1
+objCutscene.text = "CONNOR##DAMN, THEY LOCKED ALL DOORS";
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>240</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-objPlayer.phy_speed_x=4
-objCutscene.text = "2"
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>250</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-objPlayer.phy_speed_x=4
-objCutscene.text = "3"
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>260</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-objPlayer.phy_speed_x=4
-objCutscene.text = "4"
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>270</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-objPlayer.phy_speed_x=4
-objCutscene.text = "5"
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-  </entry>
-  <entry>
-    <step>280</step>
-    <event>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-objPlayer.phy_speed_x=2
-objCutscene.text = "6"
 
 </string>
           </argument>
@@ -254,10 +85,9 @@ objCutscene.text = "6"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-objCutscene.text = "7"
-
+            <string>objPlayer.cutscene_go_speed=1
+objDialog.color = c_red
+objCutscene.text = "ANGRY MAN##GO GO GO!!! SEARCH FOR THAT LITTLE RAT!!!"
 </string>
           </argument>
         </arguments>
@@ -284,8 +114,8 @@ objCutscene.text = "7"
           <argument>
             <kind>1</kind>
             <string>
-
-objCutscene.text = "8"
+objDialog.color = c_ltgray
+objCutscene.text = "MAN 1##WE HAVE BEEN HERE FOR THE PAST 2 HOURS HE PROBEBLY ESCAPED ALEREADY..."
 
 </string>
           </argument>
@@ -294,7 +124,7 @@ objCutscene.text = "8"
     </event>
   </entry>
   <entry>
-    <step>999</step>
+    <step>800</step>
     <event>
       <action>
         <libid>1</libid>
@@ -314,7 +144,38 @@ objCutscene.text = "8"
             <kind>1</kind>
             <string>
 
-objCutscene.text = "I SUCK LOTS OF NIGGER DICKZDICKZDDICKZ"
+objDialog.color = c_red
+objCutscene.text = "*BOOM!*"
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </entry>
+  <entry>
+    <step>1000</step>
+    <event>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+
+objDialog.color = c_red
+objCutscene.text = "ANGRY MAN##YOU! GET RID OF THE BODY, AND SEARCH FOR CONNOR!#NOW!"
 
 </string>
           </argument>

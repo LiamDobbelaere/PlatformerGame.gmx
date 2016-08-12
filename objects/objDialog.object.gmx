@@ -26,12 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>//follow = objCutscene
+color = c_white
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -52,7 +53,9 @@
 
 if ( instance_exists ( objCutscene ) ) {
 draw_set_halign ( fa_center )
-draw_text((view_xview[0]+view_wview[0]/2),(view_yview[0]+view_hview[0]/2),objCutscene.text)
+draw_text_transformed_colour((view_xview[0]+view_wview[0]/2),700,objCutscene.text,
+.5,.5,0,
+color,color,color,color,1)
 }
 </string>
           </argument>

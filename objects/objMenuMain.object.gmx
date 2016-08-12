@@ -56,7 +56,7 @@ menu_options[3] = "QUIT";
             <string>switch(menu_selection)
 {
     case 0: 
-    room_goto(rmLevelOneA);
+    room_goto(rmLevel1A);
     break;
     
     case 1: 

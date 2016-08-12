@@ -55,6 +55,8 @@
     <background>background\bgShade</background>
     <background>background\bgCityBack</background>
     <background>background\bgCityFront</background>
+    <background>background\bgWarehouse</background>
+    <background>background\bgGraffiti</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -108,6 +110,7 @@
   </objects>
   <timelines name="timelines">
     <timeline>timelines\tmCutsceneTest0</timeline>
+    <timeline>timelines\tmTutorial0</timeline>
   </timelines>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
@@ -115,6 +118,7 @@
     <room>rooms\rmMultiplayerMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
+    <room>rooms\rmLevel1A</room>
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmLevelOneB</room>
     <room>rooms\rmTesting</room>
