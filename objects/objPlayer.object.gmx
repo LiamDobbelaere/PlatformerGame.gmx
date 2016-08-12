@@ -160,59 +160,6 @@ fixture_standing_bound = physics_fixture_bind(fixture_standing, self);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Switching arrival
-
-if (global.switchreality)
-{    
-    instance_create(0, 0, objSwitchOverlay);
-    audio_play_sound(sndSwitchOut, 0, false);
-        
-    phy_position_x = global.target_x;
-    phy_position_y = global.target_y;
-    
-    phy_linear_velocity_x = global.target_xvel;
-    phy_linear_velocity_y = global.target_yvel;
-    sprite_index =  global.target_sprindex 
-    
-    global.switchreality = false;
-    
-    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
-    emitter.emit_rate = room_speed / 32;
-    emitter.radius = 16;
-    emitter.target_sprite = sprSwitch;
-    emitter.max_emits = 8;
-    emitter.blend_color = c_white;
-    emitter.active = true;*/
-    
-    arriving = true;
-    
-    alarm[1] = room_speed / 2;
-    alarm[2] = 3;
-}
-else
-{
-    switching_ready = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Sliding particles/sfx init
 
 slide_loop = audio_play_sound(sndSlideLoop, 0, true);
@@ -552,14 +499,30 @@ if ((keyboard_check_pressed(global.key_switch) || gamepad_button_check(0, gp_sho
     &amp;&amp; switching_ready 
     &amp;&amp; canSwitchHere) {
         
-
-
     global.switchreality = true;    
     global.target_x = phy_position_x;
     global.target_y = phy_position_y;
     global.target_xvel = phy_linear_velocity_x;
     global.target_yvel = phy_linear_velocity_y;
     global.target_sprindex = sprite_index;
+    
+    global.linked_objects = -1; //Reset linked objects collection
+    
+    var linked_objects_count = instance_number(objDynamic);
+    
+    for (var i = 0; i &lt; linked_objects_count; i++)
+    {
+        var instance = instance_find(objDynamic, i);
+        
+        if (instance.is_linked)
+        {
+            global.linked_objects[i, 0] = instance.link_tag;
+            global.linked_objects[i, 1] = instance.phy_position_x;
+            global.linked_objects[i, 2] = instance.phy_position_y;
+            global.linked_objects[i, 3] = instance.phy_linear_velocity_x;
+            global.linked_objects[i, 4] = instance.phy_linear_velocity_y;   
+        }
+    }
     
     //background_colour = c_white;
     //image_blend = c_black;
@@ -1112,6 +1075,87 @@ else
             <string>///Jump reset
 
 if (phy_linear_velocity_y &gt;= 0) can_jump = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Switching arrival
+
+if (global.switchreality)
+{    
+    instance_create(0, 0, objSwitchOverlay);
+    audio_play_sound(sndSwitchOut, 0, false);
+        
+    phy_position_x = global.target_x;
+    phy_position_y = global.target_y;
+    
+    phy_linear_velocity_x = global.target_xvel;
+    phy_linear_velocity_y = global.target_yvel;
+    sprite_index =  global.target_sprindex 
+    
+    
+    if (global.linked_objects != -1)
+    {
+        var linked_objects_count = array_height_2d(global.linked_objects);
+        
+        for (var i = 0; i &lt; linked_objects_count; i++)
+        {
+            var tag = global.linked_objects[i, 0];
+            
+            with (objDynamic)
+            {
+                if (is_linked)
+                {
+                    if (link_tag == tag)
+                    {
+                        phy_position_x = global.linked_objects[i, 1];
+                        phy_position_y = global.linked_objects[i, 2];
+                        phy_linear_velocity_x = global.linked_objects[i, 3];
+                        phy_linear_velocity_y = global.linked_objects[i, 4];
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    global.switchreality = false;
+    
+    /*var emitter = instance_create(phy_position_x, phy_position_y, objParticleEmitter);
+    emitter.emit_rate = room_speed / 32;
+    emitter.radius = 16;
+    emitter.target_sprite = sprSwitch;
+    emitter.max_emits = 8;
+    emitter.blend_color = c_white;
+    emitter.active = true;*/
+    
+    arriving = true;
+    
+    alarm[1] = room_speed / 2;
+    alarm[2] = 3;
+}
+else
+{
+    switching_ready = true;
+}
 </string>
           </argument>
         </arguments>

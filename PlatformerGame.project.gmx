@@ -118,10 +118,11 @@
     <room>rooms\rmMultiplayerMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
+
     <room>rooms\rmLevel1A</room>
+
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmLevelOneB</room>
-    <room>rooms\rmTesting</room>
     <room>rooms\rmOtherTest</room>
     <room>rooms\rmMovementTest</room>
     <room>rooms\rmMultiplayer</room>

@@ -11,7 +11,8 @@
   <colour>8176380</colour>
   <showcolour>-1</showcolour>
   <code>playMusic(sndTech);
-global.linked_room = rmLevelOneB;</code>
+global.linked_room = rmLevelOneB;
+global.always_switch = true;</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -55,10 +56,10 @@ global.linked_room = rmLevelOneB;</code>
     <instance objName="objFloor" x="0" y="544" name="inst_611E1536" locked="0" code="" scaleX="1" scaleY="7" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="32" y="672" name="inst_57E331D7" locked="0" code="" scaleX="3" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objPlayer" x="64" y="640" name="inst_12414717" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCutscene" x="96" y="640" name="inst_686804C9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="192" y="672" name="inst_3B8080A5" locked="0" code="" scaleX="7" scaleY="3.5" colour="4294967295" rotation="0"/>
     <instance objName="objFloor" x="288" y="576" name="inst_A9B47D9D" locked="0" code="" scaleX="3" scaleY="3" colour="4294967295" rotation="0"/>
-    <instance objName="objSwitchZone" x="320" y="528" name="inst_33E0CA87" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPushboxMetal" x="224" y="640" name="inst_30C52C5F" locked="0" code="is_linked = true;&#xA;link_tag = &quot;box_one&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPushboxMetal" x="96" y="640" name="inst_001601C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgStoneFloor" x="0" y="576" w="32" h="32" xo="64" yo="32" id="10000707" name="inst_DF4B52B9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
