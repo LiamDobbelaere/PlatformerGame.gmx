@@ -22,9 +22,9 @@
             <string>objDialog.follow = objPlayer;
 objPlayer.is_crawling = false;
 objPlayer.cutscene_go_speed = 0;
-objDialog.color = c_white
+objDialog.color = c_ltgray
 objPlayer.cutscene_go_speed =+1
-objCutscene.text = "CONNOR##BETTER GET OUT OF HERE BEFORE THEY FIND ME...";
+objCutscene.text = "MAN 1##HEY BOYS! MR.L SAYS HIS GOLD MIRROR IS GONE!";
 
 
 </string>
@@ -55,9 +55,9 @@ objCutscene.text = "CONNOR##BETTER GET OUT OF HERE BEFORE THEY FIND ME...";
             <string>objDialog.follow = objPlayer;
 objPlayer.is_crawling = false;
 objPlayer.cutscene_go_speed = 0;
-objDialog.color = c_white
+objDialog.color = c_dkgray
 objPlayer.cutscene_go_speed =+1
-objCutscene.text = "CONNOR##DAMN, THEY LOCKED ALL DOORS";
+objCutscene.text = "MAN 2##THAT GIRLY POCKET MIRROR HE ALWAYS CARRY AROUND?";
 
 
 </string>
@@ -86,8 +86,9 @@ objCutscene.text = "CONNOR##DAMN, THEY LOCKED ALL DOORS";
           <argument>
             <kind>1</kind>
             <string>objPlayer.cutscene_go_speed=1
-objDialog.color = c_red
-objCutscene.text = "ANGRY MAN##GO GO GO!!! SEARCH FOR THAT LITTLE RAT!!!"
+objDialog.color = c_ltgray
+objCutscene.text = "MAN 1##YES THAT ONE,YOU SHOULD HAVE SEEN HIM, HE THREW HIS CHAIR AT ME WHEN I TOLD HIM
+##THAT I DIDNT SEE IT"
 </string>
           </argument>
         </arguments>
@@ -114,8 +115,9 @@ objCutscene.text = "ANGRY MAN##GO GO GO!!! SEARCH FOR THAT LITTLE RAT!!!"
           <argument>
             <kind>1</kind>
             <string>
-objDialog.color = c_ltgray
-objCutscene.text = "MAN 1##WE HAVE BEEN HERE FOR THE PAST 2 HOURS HE PROBEBLY ESCAPED ALEREADY..."
+objDialog.color = c_dkgray
+objCutscene.text = "MAN 2##YOU THINK SOME ONE TOOK IT?
+##"
 
 </string>
           </argument>
@@ -144,8 +146,8 @@ objCutscene.text = "MAN 1##WE HAVE BEEN HERE FOR THE PAST 2 HOURS HE PROBEBLY ES
             <kind>1</kind>
             <string>
 
-objDialog.color = c_red
-objCutscene.text = "*BOOM!*"
+objDialog.color = c_ltgray
+objCutscene.text = "MAN 1##I DONT KNOW, MR.L IS WATCHING ALL CLIPS RIGHT NOW,##HE WANT MIKE TO GO HELP HIM"
 
 </string>
           </argument>
@@ -174,8 +176,8 @@ objCutscene.text = "*BOOM!*"
             <kind>1</kind>
             <string>
 
-objDialog.color = c_red
-objCutscene.text = "ANGRY MAN##YOU! GET RID OF THE BODY, AND SEARCH FOR CONNOR!#NOW!"
+objDialog.color = c_gray
+objCutscene.text = "MAN 3##ALRIGHT, HOPE HE WONT SNAP..."
 
 </string>
           </argument>

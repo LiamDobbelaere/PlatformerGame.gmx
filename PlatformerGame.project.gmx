@@ -80,6 +80,7 @@
     <object>objects\objDynamic</object>
     <object>objects\objFloor</object>
     <object>objects\objSwitchZone</object>
+    <object>objects\objSwitchZoneForced</object>
     <object>objects\objPushboxMetal</object>
     <object>objects\objBashableDoor</object>
     <object>objects\objMusic</object>
@@ -111,6 +112,7 @@
   <timelines name="timelines">
     <timeline>timelines\tmCutsceneTest0</timeline>
     <timeline>timelines\tmTutorial0</timeline>
+    <timeline>timelines\tmTutorial1</timeline>
   </timelines>
   <rooms name="rooms">
     <room>rooms\rmBoot</room>
@@ -118,9 +120,7 @@
     <room>rooms\rmMultiplayerMenu</room>
     <room>rooms\rmOptionsMenu</room>
     <room>rooms\rmControlsMenu</room>
-
     <room>rooms\rmLevel1A</room>
-
     <room>rooms\rmLevelOneA</room>
     <room>rooms\rmLevelOneB</room>
     <room>rooms\rmOtherTest</room>

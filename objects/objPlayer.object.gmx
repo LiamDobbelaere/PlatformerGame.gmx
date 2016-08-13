@@ -514,7 +514,7 @@ if ((keyboard_check_pressed(global.key_switch) || gamepad_button_check(0, gp_sho
     {
         var instance = instance_find(objDynamic, i);
         
-        if (instance.is_linked)
+       if (instance.is_linked)
         {
             global.linked_objects[i, 0] = instance.link_tag;
             global.linked_objects[i, 1] = instance.phy_position_x;
@@ -522,7 +522,7 @@ if ((keyboard_check_pressed(global.key_switch) || gamepad_button_check(0, gp_sho
             global.linked_objects[i, 3] = instance.phy_linear_velocity_x;
             global.linked_objects[i, 4] = instance.phy_linear_velocity_y;   
         }
-    }
+    } 
     
     //background_colour = c_white;
     //image_blend = c_black;

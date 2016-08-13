@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>image_single = 0;
+is_linked = false;
+
 </string>
           </argument>
         </arguments>
